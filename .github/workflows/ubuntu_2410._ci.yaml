@@ -1,0 +1,23 @@
+name: Ubuntu 24.10 CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Environment Preparation
+      uses: actions/checkout@v2
+
+    - name: Run tests
+      run : |
+        DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_2410 --tag docker_ubuntu_2410 .
+        docker run --rm docker_ubuntu_2410
+
