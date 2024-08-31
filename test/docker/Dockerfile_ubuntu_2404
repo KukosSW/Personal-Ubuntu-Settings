@@ -17,6 +17,8 @@ ENV TZ=Etc/UTC
 RUN apt update
 RUN apt upgrade -y
 
+RUN apt install -y shellcheck
+
 # Copy the project files into the docker
 COPY . /usr/local/src/personal-ubuntu-setup/
 
