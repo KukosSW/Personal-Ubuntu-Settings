@@ -1,13 +1,13 @@
-# The purpose of this Dockerfile is to build a 24.04 LTS ubuntu image without any additional packages on the build stage.
+# The purpose of this Dockerfile is to build a 24.10 ubuntu image without any additional packages on the build stage.
 # The image will be used to test installaction and configuration of packages via my scripts.
 
 # To build this image use the following command:
-# DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_2404 --tag docker_ubuntu_2404 .
+# DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_2410 --tag docker_ubuntu_2410 .
 
 # To run the image use the following command:
-# docker run --rm docker_ubuntu_2404
+# docker run --rm docker_ubuntu_2410
 
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:24.10 AS builder
 
 USER root
 
