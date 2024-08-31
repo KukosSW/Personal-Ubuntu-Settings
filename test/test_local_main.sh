@@ -120,11 +120,35 @@ function Test::Utils::shellcheck_check()
 function Test::TestCase::shellcheck()
 {
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/message.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/package_manager.sh"
+}
+
+function Test::TestCase::package_manager()
+{
+    source "${PROJECT_TOP_DIR}/src/package_manager.sh"
+
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::update" "PersonalSettings::PackageManager::Apt::update"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::upgrade" "PersonalSettings::PackageManager::Apt::upgrade"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::full_upgrade" "PersonalSettings::PackageManager::Apt::full_upgrade"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::fix_broken" "PersonalSettings::PackageManager::Apt::fix_broken"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::autoremove" "PersonalSettings::PackageManager::Apt::autoremove"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::clean" "PersonalSettings::PackageManager::Apt::clean"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::autoclean" "PersonalSettings::PackageManager::Apt::autoclean"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install bc" "PersonalSettings::PackageManager::Apt::install" "bc"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed bc" "PersonalSettings::PackageManager::Apt::is_installed" "bc"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::remove bc" "PersonalSettings::PackageManager::Apt::remove" "bc"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed bc" "! PersonalSettings::PackageManager::Apt::is_installed" "bc"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install libssl-dev" "PersonalSettings::PackageManager::Apt::install" "libssl-dev"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed libssl-dev" "PersonalSettings::PackageManager::Apt::is_installed" "libssl-dev"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::remove libssl-dev" "PersonalSettings::PackageManager::Apt::remove" "libssl-dev"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed libssl-dev" "! PersonalSettings::PackageManager::Apt::is_installed" "libssl-dev"
 }
 
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
+
+    Test::TestCase::package_manager
 }
 
 Test::TestSuite::run
