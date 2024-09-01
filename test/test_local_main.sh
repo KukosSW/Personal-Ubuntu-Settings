@@ -121,6 +121,8 @@ function Test::TestCase::shellcheck()
 {
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/message.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/package_manager.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_git.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
 }
 
 function Test::TestCase::package_manager()
@@ -144,11 +146,22 @@ function Test::TestCase::package_manager()
     Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed libssl-dev" "! PersonalSettings::PackageManager::Apt::is_installed" "libssl-dev"
 }
 
+function Test::TestCase::install_git()
+{
+    source "${PROJECT_TOP_DIR}/src/install_git.sh"
+
+    Test::Utils::test "PersonalSettings::Installer::install_git" "PersonalSettings::Installer::install_git"
+    Test::Utils::test "PersonalSettings::Installer::install_git::config::user" "git config --list | grep -q \"user.email=kukossw@gmail.com\""
+    Test::Utils::test "PersonalSettings::Installer::install_git::config::editor" "git config --list | grep -q \"core.editor=nvim\""
+    Test::Utils::test "PersonalSettings::Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
+}
+
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
 
     Test::TestCase::package_manager
+    Test::TestCase::install_git
 }
 
 Test::TestSuite::run
