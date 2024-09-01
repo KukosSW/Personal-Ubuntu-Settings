@@ -125,7 +125,7 @@ function PersonalSettings::Utils::Message::error()
 # @return 0
 function PersonalSettings::Utils::Message::success()
 {
-    PersonalSettings::Utils::Message::__message "DEBUG" "\033[0;32m" "${1}"
+    PersonalSettings::Utils::Message::__message "SUCCESS" "\033[0;32m" "${1}"
 
     return 0
 }
