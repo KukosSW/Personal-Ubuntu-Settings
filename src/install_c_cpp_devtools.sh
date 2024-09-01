@@ -112,11 +112,15 @@ PersonalSettings::Installer::install_c_cpp_devtools()
     # KERNEL DEVELOPMENT
     PersonalSettings::Utils::Message::info "Installing kernel development tools"
 
-    #shellcheck disable=SC2312
-    PersonalSettings::PackageManager::Apt::install "linux-headers-$(uname -r)" || exit 1
+    if uname -r | grep -q "azure"; then
+        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping kernel development tools installation"
+    else
+        #shellcheck disable=SC2312
+        PersonalSettings::PackageManager::Apt::install "linux-headers-$(uname -r)" || exit 1
 
-    #shellcheck disable=SC2312
-    PersonalSettings::PackageManager::Apt::install "linux-tools-$(uname -r)" || exit 1
+        #shellcheck disable=SC2312
+        PersonalSettings::PackageManager::Apt::install "linux-tools-$(uname -r)" || exit 1
+    fi
 
     PersonalSettings::PackageManager::Apt::install "libelf-dev" || exit 1
     PersonalSettings::PackageManager::Apt::install "libtool" || exit 1
