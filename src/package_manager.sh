@@ -399,6 +399,50 @@ function PersonalSettings::PackageManager::Apt::fix_broken()
     fi
 }
 
+# @brief Function to add a repository by using sudo add-apt-repository -y command
+# The function is silent and only prints the output if the addition fails
+#
+# USAGE:
+#   PersonalSettings::PackageManager::Apt::add_repository "repository_url"
+# OUTPUT:
+#   None
+#
+# @param $1 - Repository URL to add
+#
+# @return 0 if the addition is successful, 1 otherwise
+function PersonalSettings::PackageManager::Apt::add_repository()
+{
+    # We dont want to spam the user with apt update logs
+    # so we will redirect the output to a temp file
+    # and only print the log file if the update fails
+    local temp_log_file
+    temp_log_file=$(mktemp)
+
+    local repository_url="${1}"
+
+    PersonalSettings::Utils::Message::info "Adding repository: ${repository_url}"
+
+    # Shellcheck SC2024: redirection is not affected by sudo.
+    # We can suppress it, because we where created the temp file with user permissions
+    # So the user without sudo permissions can write to the file and read it
+    # shellcheck disable=SC2024
+    if ! sudo add-apt-repository -y "${repository_url}" >"${temp_log_file}" 2>&1; then
+        PersonalSettings::Utils::Message::error "Failed to add repository: ${repository_url}"
+
+        cat "${temp_log_file}" >&2
+
+        rm -f "${temp_log_file}"
+        return 1
+    fi
+
+    PersonalSettings::PackageManager::Apt::update
+
+    PersonalSettings::Utils::Message::success "Repository: ${repository_url} added successfully"
+
+    rm -f "${temp_log_file}"
+    return 0
+}
+
 # TEST MANUALLY
 # PersonalSettings::PackageManager::Apt::update
 # PersonalSettings::PackageManager::Apt::upgrade
@@ -411,3 +455,4 @@ function PersonalSettings::PackageManager::Apt::fix_broken()
 # PersonalSettings::PackageManager::Apt::autoclean
 # PersonalSettings::PackageManager::Apt::full_upgrade
 # PersonalSettings::PackageManager::Apt::fix_broken
+# PersonalSettings::PackageManager::Apt::add_repository "ppa:git-core/ppa"
