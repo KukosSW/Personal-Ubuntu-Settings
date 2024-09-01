@@ -18,6 +18,12 @@ RUN apt update
 RUN apt upgrade -y
 
 RUN apt install -y sudo
+RUN apt install -y software-properties-common
+RUN apt install -y tzdata
+
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
 RUN apt install -y shellcheck
 
 # Copy the project files into the docker
