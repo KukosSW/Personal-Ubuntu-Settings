@@ -41,6 +41,21 @@ else
     exit 1
 fi
 
+INSTALL_C_CPP_DEVTOOLS_PATH="${PROJECT_TOP_DIR}/src/install_c_cpp_devtools.sh"
+if [[ -f "${INSTALL_C_CPP_DEVTOOLS_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_C_CPP_DEVTOOLS_PATH}"
+else
+    echo "Error: Could not find install_c_cpp_devtools.sh at ${INSTALL_C_CPP_DEVTOOLS_PATH}"
+    exit 1
+fi
+
+# @brief Main function for the personal settings
+#
+# USAGE:
+#  PersonalSettings::main
+#
+# @return 0 on success, exit 1 on failure
 function PersonalSettings::main()
 {
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
@@ -54,6 +69,7 @@ function PersonalSettings::main()
     PersonalSettings::PackageManager::Apt::autoclean
 
     PersonalSettings::Installer::install_git
+    PersonalSettings::Installer::install_c_cpp_devtools
 
     PersonalSettings::Utils::Message::success "FINISHED PERSONAL SETTINGS"
 }

@@ -97,11 +97,32 @@ function Test::TestCase::install_git()
     Test::Utils::test "PersonalSettings::Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
 }
 
+function Test::TestCase::install_c_cpp_devtools()
+{
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::gcc" "gcc --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::g++" "g++ --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::gdb" "gdb --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::clang" "clang --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::make" "make --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::cmake" "cmake --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::valgrind" "valgrind --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::cppcheck" "cppcheck --version"
+
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::doxygen" "doxygen --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pandoc" "pandoc --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::groff" "groff --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::flex" "flex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::bison" "bison --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::strace" "strace --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version" || exit 1
+}
+
 function Test::TestSuite::E2E::run()
 {
     "${PROJECT_TOP_DIR}/src/main.sh"
 
     Test::TestCase::install_git
+    Test::TestCase::install_c_cpp_devtools
 }
 
 Test::TestSuite::E2E::run
