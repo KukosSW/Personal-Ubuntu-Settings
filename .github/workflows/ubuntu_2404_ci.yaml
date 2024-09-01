@@ -18,8 +18,12 @@ jobs:
     - name: Environment Preparation
       uses: actions/checkout@v2
 
-    - name: Run tests
+    - name: Run Unit tests
       run : |
         DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_2404 --tag docker_ubuntu_2404 .
         docker run --rm docker_ubuntu_2404
+    - name: Run E2E tests
+      run : |
+        DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_2404 --tag docker_e2e_ubuntu_2404 .
+        docker run --rm docker_e2e_ubuntu_2404
 
