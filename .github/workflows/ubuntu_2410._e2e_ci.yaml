@@ -1,0 +1,25 @@
+name: Ubuntu 24.10 E2E CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Environment Preparation
+      uses: actions/checkout@v2
+
+    - name: Run E2E tests
+      run : |
+        DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_2410 --tag docker_e2e_ubuntu_2410 .
+        docker run --rm docker_e2e_ubuntu_2410
+

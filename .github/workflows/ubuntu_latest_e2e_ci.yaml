@@ -1,4 +1,4 @@
-name: Ubuntu Latest CI
+name: Ubuntu Latest E2E CI
 
 on:
   push:
@@ -18,10 +18,6 @@ jobs:
     - name: Environment Preparation
       uses: actions/checkout@v2
 
-    - name: Run Unit tests
-      run : |
-        DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_latest --tag docker_ubuntu_latest .
-        docker run --rm docker_ubuntu_latest
     - name: Run E2E tests
       run : |
         DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_latest --tag docker_e2e_ubuntu_latest .

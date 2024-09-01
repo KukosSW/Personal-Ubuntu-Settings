@@ -1,4 +1,4 @@
-name: Ubuntu 24.10 CI
+name: Ubuntu 24.10 UNIT TEST CI
 
 on:
   push:
@@ -22,8 +22,4 @@ jobs:
       run : |
         DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_ubuntu_2410 --tag docker_ubuntu_2410 .
         docker run --rm docker_ubuntu_2410
-    - name: Run E2E tests
-      run : |
-        DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_2410 --tag docker_e2e_ubuntu_2410 .
-        docker run --rm docker_e2e_ubuntu_2410
 
