@@ -117,6 +117,14 @@ function Test::TestCase::install_c_cpp_devtools()
     Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version" || exit 1
 }
 
+function Test::TestCase::install_latex()
+{
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::texlive-full" "tex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::latex" "latex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pdflatex" "pdflatex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version" || exit 1
+}
+
 function Test::TestSuite::E2E::run()
 {
     "${PROJECT_TOP_DIR}/src/main.sh"

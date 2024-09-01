@@ -50,6 +50,15 @@ else
     exit 1
 fi
 
+INSTALL_LATEX_PATH="${PROJECT_TOP_DIR}/src/install_latex.sh"
+if [[ -f "${INSTALL_LATEX_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_LATEX_PATH}"
+else
+    echo "Error: Could not find install_latex.sh at ${INSTALL_LATEX_PATH}"
+    exit 1
+fi
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -70,6 +79,7 @@ function PersonalSettings::main()
 
     PersonalSettings::Installer::install_git
     PersonalSettings::Installer::install_c_cpp_devtools
+    PersonalSettings::Installer::install_latex
 
     PersonalSettings::Utils::Message::success "FINISHED PERSONAL SETTINGS"
 }

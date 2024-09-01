@@ -181,6 +181,18 @@ function Test::TestCase::install_c_cpp_devtools()
     Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version" || exit 1
 }
 
+function Test::TestCase::install_latex()
+{
+    source "${PROJECT_TOP_DIR}/src/install_latex.sh"
+
+    Test::Utils::test "PersonalSettings::Installer::install_latex" "PersonalSettings::Installer::install_latex"
+
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::texlive-full" "tex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::latex" "latex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pdflatex" "pdflatex --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version" || exit 1
+}
+
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
@@ -188,6 +200,7 @@ function Test::TestSuite::run()
     Test::TestCase::package_manager
     Test::TestCase::install_git
     Test::TestCase::install_c_cpp_devtools
+    Test::TestCase::install_latex
 }
 
 Test::TestSuite::run
