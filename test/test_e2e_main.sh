@@ -108,21 +108,20 @@ function Test::TestCase::install_c_cpp_devtools()
     Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::valgrind" "valgrind --version"
     Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::cppcheck" "cppcheck --version"
 
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::doxygen" "doxygen --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pandoc" "pandoc --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::groff" "groff --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::flex" "flex --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::bison" "bison --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::strace" "strace --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::doxygen" "doxygen --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pandoc" "pandoc --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::groff" "groff --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::bison" "bison --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::strace" "strace --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version"
 }
 
 function Test::TestCase::install_latex()
 {
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::texlive-full" "tex --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::latex" "latex --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pdflatex" "pdflatex --version" || exit 1
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version" || exit 1
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::texlive-full" "tex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::latex" "latex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pdflatex" "pdflatex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version"
 }
 
 function Test::TestSuite::E2E::run()

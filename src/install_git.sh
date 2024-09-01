@@ -37,12 +37,12 @@ fi
 # USAGE:
 #   PersonalSettings::Installer::install_git
 #
-# @return 0 on success, exit 1 on failure
+# @return 0 on success, return 1 on failure
 PersonalSettings::Installer::install_git()
 {
     PersonalSettings::Utils::Message::info "Installing and configuring git"
 
-    PersonalSettings::PackageManager::Apt::install "git" || exit 1
+    PersonalSettings::PackageManager::Apt::install "git" || return 1
 
     git config --global user.name "Michal Kukowski"
     git config --global user.email "kukossw@gmail.com"

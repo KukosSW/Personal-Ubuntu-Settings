@@ -69,17 +69,25 @@ function PersonalSettings::main()
 {
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
 
-    PersonalSettings::PackageManager::Apt::update
-    PersonalSettings::PackageManager::Apt::upgrade
-    PersonalSettings::PackageManager::Apt::full_upgrade
-    PersonalSettings::PackageManager::Apt::fix_broken
-    PersonalSettings::PackageManager::Apt::autoremove
-    PersonalSettings::PackageManager::Apt::clean
-    PersonalSettings::PackageManager::Apt::autoclean
+    PersonalSettings::PackageManager::Apt::update || exit 1
+    PersonalSettings::PackageManager::Apt::upgrade || exit 1
+    PersonalSettings::PackageManager::Apt::full_upgrade || exit 1
+    PersonalSettings::PackageManager::Apt::fix_broken || exit 1
+    PersonalSettings::PackageManager::Apt::autoremove || exit 1
+    PersonalSettings::PackageManager::Apt::clean || exit 1
+    PersonalSettings::PackageManager::Apt::autoclean || exit 1
 
-    PersonalSettings::Installer::install_git
-    PersonalSettings::Installer::install_c_cpp_devtools
-    PersonalSettings::Installer::install_latex
+    PersonalSettings::Installer::install_git || exit 1
+    PersonalSettings::Installer::install_c_cpp_devtools || exit 1
+    PersonalSettings::Installer::install_latex || exit 1
+
+    PersonalSettings::PackageManager::Apt::update || exit 1
+    PersonalSettings::PackageManager::Apt::upgrade || exit 1
+    PersonalSettings::PackageManager::Apt::full_upgrade || exit 1
+    PersonalSettings::PackageManager::Apt::fix_broken || exit 1
+    PersonalSettings::PackageManager::Apt::autoremove || exit 1
+    PersonalSettings::PackageManager::Apt::clean || exit 1
+    PersonalSettings::PackageManager::Apt::autoclean || exit 1
 
     PersonalSettings::Utils::Message::success "FINISHED PERSONAL SETTINGS"
 }

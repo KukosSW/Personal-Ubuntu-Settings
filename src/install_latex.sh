@@ -37,7 +37,7 @@ fi
 # USAGE:
 #   PersonalSettings::Installer::install_latex
 #
-# @return 0 on success, exit 1 on failure
+# @return 0 on success, return 1 on failure
 PersonalSettings::Installer::install_latex()
 {
     PersonalSettings::Utils::Message::info "Installing LaTeX"
@@ -45,43 +45,43 @@ PersonalSettings::Installer::install_latex()
     # LaTeX environment
     PersonalSettings::Utils::Message::info "Installing LaTeX environment"
 
-    PersonalSettings::PackageManager::Apt::install "texlive-full" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-latex-extra" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-fonts-extra" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-lang-polish" || exit 1
+    PersonalSettings::PackageManager::Apt::install "texlive-full" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-latex-extra" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-fonts-extra" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-lang-polish" || return 1
 
     PersonalSettings::Utils::Message::success "LaTeX environment installed successfully"
 
     # LaTeX editors
     PersonalSettings::Utils::Message::info "Installing LaTeX editors"
 
-    PersonalSettings::PackageManager::Apt::install "texmaker" || exit 1
-    PersonalSettings::PackageManager::Apt::install "kile" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texworks" || exit 1
+    PersonalSettings::PackageManager::Apt::install "texmaker" || return 1
+    PersonalSettings::PackageManager::Apt::install "kile" || return 1
+    PersonalSettings::PackageManager::Apt::install "texworks" || return 1
 
     PersonalSettings::Utils::Message::success "LaTeX editors installed successfully"
 
     # LaTeX packages and tools
     PersonalSettings::Utils::Message::info "Installing LaTeX packages and tools"
 
-    PersonalSettings::PackageManager::Apt::install "biber" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-bibtex-extra" || exit 1
-    PersonalSettings::PackageManager::Apt::install "imagemagick" || exit 1
-    PersonalSettings::PackageManager::Apt::install "pdf2svg" || exit 1
-    PersonalSettings::PackageManager::Apt::install "ghostscript" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-science" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-fonts-extra" || exit 1
-    PersonalSettings::PackageManager::Apt::install "fontconfig" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-latex-extra" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-latex-recommended" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-fonts-recommended" || exit 1
-    PersonalSettings::PackageManager::Apt::install "gnuplot" || exit 1
-    PersonalSettings::PackageManager::Apt::install "texlive-pictures" || exit 1
-    PersonalSettings::PackageManager::Apt::install "latexdiff" || exit 1
-    PersonalSettings::PackageManager::Apt::install "aspell" || exit 1
-    PersonalSettings::PackageManager::Apt::install "hunspell" || exit 1
-    PersonalSettings::PackageManager::Apt::install "pdftk" || exit 1
-    PersonalSettings::PackageManager::Apt::install "poppler-utils" || exit 1
+    PersonalSettings::PackageManager::Apt::install "biber" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-bibtex-extra" || return 1
+    PersonalSettings::PackageManager::Apt::install "imagemagick" || return 1
+    PersonalSettings::PackageManager::Apt::install "pdf2svg" || return 1
+    PersonalSettings::PackageManager::Apt::install "ghostscript" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-science" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-fonts-extra" || return 1
+    PersonalSettings::PackageManager::Apt::install "fontconfig" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-latex-extra" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-latex-recommended" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-fonts-recommended" || return 1
+    PersonalSettings::PackageManager::Apt::install "gnuplot" || return 1
+    PersonalSettings::PackageManager::Apt::install "texlive-pictures" || return 1
+    PersonalSettings::PackageManager::Apt::install "latexdiff" || return 1
+    PersonalSettings::PackageManager::Apt::install "aspell" || return 1
+    PersonalSettings::PackageManager::Apt::install "hunspell" || return 1
+    PersonalSettings::PackageManager::Apt::install "pdftk" || return 1
+    PersonalSettings::PackageManager::Apt::install "poppler-utils" || return 1
 
     PersonalSettings::Utils::Message::success "LaTeX packages and tools installed successfully"
 
