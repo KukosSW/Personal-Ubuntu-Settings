@@ -32,6 +32,12 @@ else
     exit 1
 fi
 
+# @brief Function to install git
+#
+# USAGE:
+#   PersonalSettings::Installer::install_git
+#
+# @return 0 on success, exit 1 on failure
 PersonalSettings::Installer::install_git()
 {
     PersonalSettings::Utils::Message::info "Installing and configuring git"
