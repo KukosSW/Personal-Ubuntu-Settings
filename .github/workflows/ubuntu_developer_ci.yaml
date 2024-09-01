@@ -1,0 +1,24 @@
+name: Ubuntu Developer CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Environment Preparation
+      uses: actions/checkout@v2
+
+    - name: Run tests as the developer
+      run : |
+        test/test_docker_main.sh
+
