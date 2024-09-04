@@ -115,6 +115,8 @@ PersonalSettings::Installer::install_c_cpp_devtools()
     #shellcheck disable=SC2312
     if uname -r | grep -q "azure"; then
         PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping kernel development tools installation"
+    elif [[ -f "/.dockerenv" ]]; then
+        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping kernel development tools installation"
     else
         #shellcheck disable=SC2312
         PersonalSettings::PackageManager::Apt::install "linux-headers-$(uname -r)" || return 1
