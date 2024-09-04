@@ -32,6 +32,15 @@ else
     exit 1
 fi
 
+INSTALL_CLI_UTILS_PATH="${PROJECT_TOP_DIR}/src/install_cli_utils.sh"
+if [[ -f "${INSTALL_CLI_UTILS_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_CLI_UTILS_PATH}"
+else
+    echo "Error: Could not find install_cli_utils.sh at ${INSTALL_CLI_UTILS_PATH}"
+    exit 1
+fi
+
 INSTALL_GIT_PATH="${PROJECT_TOP_DIR}/src/install_git.sh"
 if [[ -f "${INSTALL_GIT_PATH}" ]]; then
     # shellcheck source=/dev/null
@@ -76,6 +85,8 @@ function PersonalSettings::main()
     PersonalSettings::PackageManager::Apt::autoremove || exit 1
     PersonalSettings::PackageManager::Apt::clean || exit 1
     PersonalSettings::PackageManager::Apt::autoclean || exit 1
+
+    PersonalSettings::Installer::install_cli_utils || exit 1
 
     PersonalSettings::Installer::install_git || exit 1
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1

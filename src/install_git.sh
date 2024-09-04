@@ -53,6 +53,10 @@ PersonalSettings::Installer::install_git()
     git config --global sendemail.smtpencryption "tls"
 
     git config --global core.editor "nvim"
+    git config --global core.pager.branch "cat"
+    git config --global core.pager.log "less -FRSX"
+
+    git config --global pull.rebase true
 
     git config --global alias.ci 'commit'
     git config --global alias.cim 'commit -m'
@@ -81,6 +85,31 @@ PersonalSettings::Installer::install_git()
     git config --global alias.cfgalias 'config --get-regexp alias'
 
     PersonalSettings::Utils::Message::success "Git installed and configured"
+
+    PersonalSettings::Utils::Message::info "Installing additional git tools"
+
+    PersonalSettings::PackageManager::Apt::install "git-extras" || return 1
+    PersonalSettings::PackageManager::Apt::install "gitg" || return 1
+    PersonalSettings::PackageManager::Apt::install "gitk" || return 1
+    PersonalSettings::PackageManager::Apt::install "gh" || return 1
+
+    PersonalSettings::Utils::Message::success "Additional git tools installed"
+
+    if ! command -v lazygit >/dev/null 2>&1; then
+        PersonalSettings::Utils::Message::info "Installing lazygit"
+
+        local lazygit_version
+
+        # shellcheck disable=SC2312
+        lazygit_version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+        curl -Lqo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${lazygit_version}_Linux_x86_64.tar.gz" 2>/dev/null
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+
+        rm -f lazygit.tar.gz lazygit
+
+        PersonalSettings::Utils::Message::success "Lazygit installed"
+    fi
 
     return 0
 }

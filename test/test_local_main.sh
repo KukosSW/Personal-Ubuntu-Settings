@@ -121,6 +121,7 @@ function Test::TestCase::shellcheck()
 {
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/message.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/package_manager.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_cli_utils.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_git.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_c_cpp_devtools.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
@@ -148,14 +149,32 @@ function Test::TestCase::package_manager()
     Test::Utils::test "PersonalSettings::PackageManager::Apt::is_installed libssl-dev" "! PersonalSettings::PackageManager::Apt::is_installed" "libssl-dev"
 }
 
+function Test::TestCase::install_cli_utils()
+{
+    source "${PROJECT_TOP_DIR}/src/install_cli_utils.sh"
+
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils" "PersonalSettings::Installer::install_cli_utils"
+
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::curl" "curl --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::gawk" "awk --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::tree" "tree --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::rsync" "rsync --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::nmap" "nmap --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::nala" "nala --version"
+}
+
 function Test::TestCase::install_git()
 {
     source "${PROJECT_TOP_DIR}/src/install_git.sh"
 
     Test::Utils::test "PersonalSettings::Installer::install_git" "PersonalSettings::Installer::install_git"
+
+    Test::Utils::test "PersonalSettings::Installer::install_git::git" "git --version"
     Test::Utils::test "PersonalSettings::Installer::install_git::config::user" "git config --list | grep -q \"user.email=kukossw@gmail.com\""
     Test::Utils::test "PersonalSettings::Installer::install_git::config::editor" "git config --list | grep -q \"core.editor=nvim\""
     Test::Utils::test "PersonalSettings::Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
+    Test::Utils::test "PersonalSettings::Installer::install_git::gh" "gh --version"
+    Test::Utils::test "PersonalSettings::Installer::install_git::lazygit" "lazygit --version"
 }
 
 function Test::TestCase::install_c_cpp_devtools()
@@ -173,13 +192,13 @@ function Test::TestCase::install_c_cpp_devtools()
     Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::valgrind" "valgrind --version"
     Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::install::cppcheck" "cppcheck --version"
 
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::doxygen" "doxygen --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pandoc" "pandoc --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::groff" "groff --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::flex" "flex --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::bison" "bison --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::strace" "strace --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::ltrace" "ltrace --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::doxygen" "doxygen --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::pandoc" "pandoc --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::groff" "groff --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::flex" "flex --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::bison" "bison --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::strace" "strace --version"
+    Test::Utils::test "PersonalSettings::Installer::install_c_cpp_devtools::ltrace" "ltrace --version"
 }
 
 function Test::TestCase::install_latex()
@@ -188,10 +207,10 @@ function Test::TestCase::install_latex()
 
     Test::Utils::test "PersonalSettings::Installer::install_latex" "PersonalSettings::Installer::install_latex"
 
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::texlive-full" "tex --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::latex" "latex --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::pdflatex" "pdflatex --version"
-    Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Installer::install_latex::texlive-full" "tex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Installer::install_latex::latex" "latex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Installer::install_latex::pdflatex" "pdflatex --version"
+    Test::Utils::test "PersonalSettings::PackageManager::Installer::install_latex::gnuplot" "aspell --version"
 }
 
 function Test::TestSuite::run()
@@ -199,6 +218,8 @@ function Test::TestSuite::run()
     Test::TestCase::shellcheck
 
     Test::TestCase::package_manager
+
+    Test::TestCase::install_cli_utils
     Test::TestCase::install_git
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_latex
