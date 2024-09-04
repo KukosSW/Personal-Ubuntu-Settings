@@ -5,7 +5,7 @@
 # DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_latest --tag docker_e2e_ubuntu_latest .
 
 # To run the image use the following command:
-# docker run --rm docker_ubuntu_latest
+# docker run --rm docker_e2e_ubuntu_latest
 
 FROM ubuntu:latest AS builder
 

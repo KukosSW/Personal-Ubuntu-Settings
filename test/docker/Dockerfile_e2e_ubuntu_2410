@@ -5,7 +5,7 @@
 # DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_2410 --tag docker_e2e_ubuntu_2410 .
 
 # To run the image use the following command:
-# docker run --rm docker_ubuntu_2410
+# docker run --rm docker_e2e_ubuntu_2410
 
 FROM ubuntu:24.10 AS builder
 
