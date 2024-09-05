@@ -88,6 +88,7 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "telnet" || return 1
     PersonalSettings::PackageManager::Apt::install "ftp" || return 1
     PersonalSettings::PackageManager::Apt::install "rsync" || return 1
+    PersonalSettings::PackageManager::Apt::install "speedtest-cli" || return 1
 
     # TERMINAL UTILITIES
     PersonalSettings::PackageManager::Apt::install "tmux" || return 1
@@ -98,10 +99,12 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "xterm" || return 1
     PersonalSettings::PackageManager::Apt::install "tilix" || return 1
 
-
     # OTHER UTILITIES
     PersonalSettings::PackageManager::Apt::install "nala" || return 1
     PersonalSettings::PackageManager::Apt::install "shellcheck" || return 1
+    PersonalSettings::PackageManager::Apt::install "software-properties-common" || return 1
 
     PersonalSettings::Utils::Message::success "CLI utilities installed"
+
+    return 0
 }

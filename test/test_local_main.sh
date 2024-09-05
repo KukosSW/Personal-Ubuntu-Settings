@@ -125,6 +125,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_git.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_c_cpp_devtools.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
 }
 
@@ -213,6 +214,17 @@ function Test::TestCase::install_latex()
     Test::Utils::test "PersonalSettings::PackageManager::Installer::install_latex::gnuplot" "aspell --version"
 }
 
+function Test::TestCase::install_virtualbox()
+{
+    source "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
+
+    Test::Utils::test "PersonalSettings::Installer::install_virtualbox" "PersonalSettings::Installer::install_virtualbox"
+
+    # virtualbox --version starts the GUI, so we need to use --help
+    Test::Utils::test "PersonalSettings::Installer::install_virtualbox::virtualbox" "virtualbox --help"
+    Test::Utils::test "PersonalSettings::Installer::install_virtualbox::vboxmanage" "vboxmanage --version"
+}
+
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
@@ -223,6 +235,7 @@ function Test::TestSuite::run()
     Test::TestCase::install_git
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_latex
+    Test::TestCase::install_virtualbox
 }
 
 Test::TestSuite::run

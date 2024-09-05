@@ -237,4 +237,6 @@ PersonalSettings::Installer::install_c_cpp_devtools()
     PersonalSettings::Utils::Message::success "QT 6 installed successfully"
 
     PersonalSettings::Utils::Message::success "C/C++ development tools installed successfully"
+
+    return 0
 }

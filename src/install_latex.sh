@@ -86,4 +86,6 @@ PersonalSettings::Installer::install_latex()
     PersonalSettings::Utils::Message::success "LaTeX packages and tools installed successfully"
 
     PersonalSettings::Utils::Message::success "LaTeX installed successfully"
+
+    return 0
 }

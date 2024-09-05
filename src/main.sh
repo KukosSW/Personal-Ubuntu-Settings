@@ -68,6 +68,15 @@ else
     exit 1
 fi
 
+INSTALL_VIRTUALBOX_PATH="${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
+if [[ -f "${INSTALL_VIRTUALBOX_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_VIRTUALBOX_PATH}"
+else
+    echo "Error: Could not find install_virtualbox.sh at ${INSTALL_VIRTUALBOX_PATH}"
+    exit 1
+fi
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -76,6 +85,9 @@ fi
 # @return 0 on success, exit 1 on failure
 function PersonalSettings::main()
 {
+    # Turn off most of the interactive prompts in apt
+    export DEBIAN_FRONTEND=noninteractive
+
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
 
     PersonalSettings::PackageManager::Apt::update || exit 1
@@ -91,6 +103,7 @@ function PersonalSettings::main()
     PersonalSettings::Installer::install_git || exit 1
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1
     PersonalSettings::Installer::install_latex || exit 1
+    PersonalSettings::Installer::install_virtualbox || exit 1
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
@@ -101,6 +114,8 @@ function PersonalSettings::main()
     PersonalSettings::PackageManager::Apt::autoclean || exit 1
 
     PersonalSettings::Utils::Message::success "FINISHED PERSONAL SETTINGS"
+
+    return 0
 }
 
 PersonalSettings::main
