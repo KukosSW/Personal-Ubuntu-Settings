@@ -52,7 +52,10 @@ PersonalSettings::Installer::install_virtualbox()
     PersonalSettings::PackageManager::Apt::install "virtualbox-dkms" || return 1
     PersonalSettings::PackageManager::Apt::install "virtualbox-qt" || return 1
     PersonalSettings::PackageManager::Apt::install "virtualbox-guest-utils" || return 1
-    PersonalSettings::PackageManager::Apt::install "virtualbox-guest-x11" || return 1
+
+    # X11 guest additions will asked about old X11 configuration file
+    # Answer with "N" to keep the current file
+    PersonalSettings::PackageManager::Apt::install "virtualbox-guest-x11" -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" || return 1
 
     PersonalSettings::Utils::Message::success "VirtualBox installed successfully"
 
