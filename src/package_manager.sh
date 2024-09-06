@@ -2,6 +2,9 @@
 
 set -Eu
 
+# Turn off most of the interactive prompts in apt
+export DEBIAN_FRONTEND=noninteractive
+
 # Get the directory of this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_TOP_DIR="${SCRIPT_DIR}/.."
@@ -126,6 +129,7 @@ function PersonalSettings::PackageManager::Apt::upgrade()
 #   None
 #
 # @param $1 - Package name to install
+# @param [optional] $2 - Additional options to pass to the apt install command (e.g. -o Dpkg::Options::="--force-confdef")
 #
 # @return 0 if the installation is successful, 1 otherwise
 function PersonalSettings::PackageManager::Apt::install()
@@ -137,29 +141,61 @@ function PersonalSettings::PackageManager::Apt::install()
     temp_log_file=$(mktemp)
 
     local package_name="${1}"
-    PersonalSettings::Utils::Message::info "Installing package: ${package_name} ... (sudo apt install -y ${package_name})"
 
     if PersonalSettings::PackageManager::Apt::is_installed "${package_name}"; then
         PersonalSettings::Utils::Message::info "Package: ${package_name} is already installed"
         return 0
     fi
 
-    # Shellcheck SC2024: redirection is not affected by sudo.
-    # We can suppress it, because we where created the temp file with user permissions
-    # So the user without sudo permissions can write to the file and read it
-    # shellcheck disable=SC2024
-    if sudo apt install -y "${package_name}" >"${temp_log_file}" 2>&1; then
-        PersonalSettings::Utils::Message::success "Package: ${package_name} installed successfully"
+    # To make it simple, let split this function into 2 cases
+    # 1. If there is no additional options
+    # 2. If there are additional options
+    # Case 1
+    if [[ "$#" -lt 2 ]]; then
+        PersonalSettings::Utils::Message::info "Installing package: ${package_name} ... (sudo apt install -y ${package_name})"
 
-        rm -f "${temp_log_file}"
-        return 0
+        # Shellcheck SC2024: redirection is not affected by sudo.
+        # We can suppress it, because we where created the temp file with user permissions
+        # So the user without sudo permissions can write to the file and read it
+        # shellcheck disable=SC2024
+        if sudo apt install -y "${package_name}" >"${temp_log_file}" 2>&1; then
+            PersonalSettings::Utils::Message::success "Package: ${package_name} installed successfully"
+
+            rm -f "${temp_log_file}"
+            return 0
+        else
+            PersonalSettings::Utils::Message::error "Failed to install package: ${package_name}"
+
+            cat "${temp_log_file}" >&2
+
+            rm -f "${temp_log_file}"
+            return 1
+        fi
+    # Case 2
     else
-        PersonalSettings::Utils::Message::error "Failed to install package: ${package_name}"
+        # From 2nd argument to the end of the arguments are additional options
+        # Shift 1 to get them all easily to the array
+        shift 1
+        local additional_options=("$@")
+        PersonalSettings::Utils::Message::info "Installing package: ${package_name} ... (sudo apt install -y ${additional_options[*]} ${package_name})"
 
-        cat "${temp_log_file}" >&2
+        # Shellcheck SC2024: redirection is not affected by sudo.
+        # We can suppress it, because we where created the temp file with user permissions
+        # So the user without sudo permissions can write to the file and read it
+        # shellcheck disable=SC2024
+        if sudo apt install -y "${additional_options[@]}" "${package_name}" >"${temp_log_file}" 2>&1; then
+            PersonalSettings::Utils::Message::success "Package: ${package_name} installed successfully"
 
-        rm -f "${temp_log_file}"
-        return 1
+            rm -f "${temp_log_file}"
+            return 0
+        else
+            PersonalSettings::Utils::Message::error "Failed to install package: ${package_name}"
+
+            cat "${temp_log_file}" >&2
+
+            rm -f "${temp_log_file}"
+            return 1
+        fi
     fi
 }
 

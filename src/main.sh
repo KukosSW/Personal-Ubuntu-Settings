@@ -2,6 +2,9 @@
 
 set -Eu
 
+# Turn off most of the interactive prompts in apt
+export DEBIAN_FRONTEND=noninteractive
+
 # Get the directory of this script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_TOP_DIR="${SCRIPT_DIR}/.."
@@ -85,9 +88,6 @@ fi
 # @return 0 on success, exit 1 on failure
 function PersonalSettings::main()
 {
-    # Turn off most of the interactive prompts in apt
-    export DEBIAN_FRONTEND=noninteractive
-
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
 
     PersonalSettings::PackageManager::Apt::update || exit 1

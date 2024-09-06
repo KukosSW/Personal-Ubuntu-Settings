@@ -45,6 +45,7 @@ PersonalSettings::Installer::install_latex()
     # LaTeX environment
     PersonalSettings::Utils::Message::info "Installing LaTeX environment"
 
+    PersonalSettings::Utils::Message::info "Installing texlive-full, this may take a while"
     PersonalSettings::PackageManager::Apt::install "texlive-full" || return 1
     PersonalSettings::PackageManager::Apt::install "texlive-latex-extra" || return 1
     PersonalSettings::PackageManager::Apt::install "texlive-fonts-extra" || return 1
