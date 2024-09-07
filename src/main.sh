@@ -90,6 +90,13 @@ function PersonalSettings::main()
 {
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
 
+    # Sudo has 15 minutes timeout by default, because of that, in "random" moments the script will ask for the password.
+    # To avoid that, we need to do 2 things:
+    # 1. Run the script with sudo and provide the password at the beginning. (sudo -v)
+    # 2. Run in background a process that will keep the sudo session alive. (while true; do sudo -v; sleep 60; done &)
+    sudo -v
+    while true; do sudo -v; sleep 60; done &
+
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
     PersonalSettings::PackageManager::Apt::full_upgrade || exit 1
