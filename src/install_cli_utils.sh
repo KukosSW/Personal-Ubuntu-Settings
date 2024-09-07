@@ -99,6 +99,17 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "xterm" || return 1
     PersonalSettings::PackageManager::Apt::install "tilix" || return 1
 
+    # EDITORS
+    PersonalSettings::PackageManager::Apt::install "vim" || return 1
+    PersonalSettings::PackageManager::Apt::install "nano" || return 1
+
+    # To install emcas without user interaction, we need to chose "No configuration"
+    echo "postfix postfix/main_mailer_type select No configuration" | sudo debconf-set-selections
+    PersonalSettings::PackageManager::Apt::install "emacs" || return 1
+    PersonalSettings::PackageManager::Apt::install "gedit" || return 1
+    PersonalSettings::PackageManager::Apt::install "neovim" || return 1
+
+
     # OTHER UTILITIES
     PersonalSettings::PackageManager::Apt::install "nala" || return 1
     PersonalSettings::PackageManager::Apt::install "shellcheck" || return 1
