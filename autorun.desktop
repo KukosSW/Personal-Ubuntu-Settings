@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.1.0
+Type=Application
+Name=Personal Ubuntu Setup
+Comment=Setup Ubuntu by running a script
+Exec=/bin/bash -c "$(pwd)/src/main.sh"
+Icon=utilities-terminal
+Terminal=true
+Categories=System;Utility;
