@@ -104,8 +104,9 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "nano" || return 1
 
     # To install emcas without user interaction, we need to chose "No configuration"
-    echo "postfix postfix/main_mailer_type select No configuration" | sudo debconf-set-selections
-    PersonalSettings::PackageManager::Apt::install "emacs" || return 1
+    # Right now, I don't need an emacs
+    # echo "postfix postfix/main_mailer_type select No configuration" | sudo debconf-set-selections
+    # PersonalSettings::PackageManager::Apt::install "emacs" || return 1
     PersonalSettings::PackageManager::Apt::install "gedit" || return 1
     PersonalSettings::PackageManager::Apt::install "neovim" || return 1
 
