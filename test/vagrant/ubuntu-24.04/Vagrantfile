@@ -1,0 +1,88 @@
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  user_name = ENV['USER'] || ENV['LOGNAME'] || ENV['USERNAME']
+
+  # UBUNTU 24.04 LTS with default vagrant user name
+  # login: vagrant
+  # password: vagrant
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box_check_update = true
+
+  # SSH and SCP
+  # ssh -P 3022 vagrant@127.0.0.1
+  # scp -P 3022 <host path> vagrant@127.0.0.1:<vm path>
+  config.vm.network "forwarded_port", guest: 22, host: 3022, id: "ssh"
+
+  # Not needed right now, but if you want to share some folder, here is the example:
+  # config.vm.synced_folder "/home/#{user_name}/vagrant/shared", "/home/vagrant/Downloads", type: "virtualbox"
+
+  # VB DISK SETTINGS (100GB)
+  config.disksize.size = '100GB'
+
+  config.vm.provider "virtualbox" do |vb|
+    # VB BASIC SETTINGS
+    vb.name = "ubuntu-24.04-vagrant"
+    vb.cpus = 4
+    vb.memory = "4096"
+
+    # VBoxGuestAdditions ISO
+    vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', 0, '--type', 'dvddrive', '--medium', '/usr/share/virtualbox/VBoxGuestAdditions.iso']
+
+    # VB GUI SETTINGS
+    vb.gui = true
+    vb.customize ["modifyvm", :id, "--vram", "128"]
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    vb.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vmsvga"]
+
+    # VB CLIPBOARD SETTINGS
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
+  end
+
+  # POST INSTALLATION
+  config.vm.provision "shell", inline: <<-SHELL
+    # Resize the disk
+    sudo sgdisk /dev/sda -e
+    sudo parted /dev/sda resizepart 3 100%
+    sudo pvresize /dev/sda3
+    sudo lvextend -r -l +100%FREE /dev/ubuntu-vg/ubuntu-lv
+    sudo resize2fs -p /dev/mapper/ubuntu--vg-ubuntu--lv
+
+    # Install the desktop environment
+    sudo apt-get update
+    sudo apt-get install -y dconf-cli
+    sudo apt-get install -y ubuntu-desktop
+
+    mkdir -p /home/vagrant/.config/autostart
+
+    # Create a script to disable screen locking and power management settings after login
+    echo '#!/bin/bash
+    export DISPLAY=:0
+    gsettings set org.gnome.desktop.screensaver lock-enabled false
+    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type nothing
+    gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type nothing
+    gsettings set org.gnome.desktop.session idle-delay 0
+    gsettings set org.gnome.settings-daemon.plugins.power power-button-action nothing
+    ' > /home/vagrant/.config/autostart/gsettings-fix.sh
+
+    chmod +x /home/vagrant/.config/autostart/gsettings-fix.sh
+
+    # Create a .desktop file to auto-run the script at login
+    echo '[Desktop Entry]
+    Type=Application
+    Exec=/home/vagrant/.config/autostart/gsettings-fix.sh
+    Hidden=false
+    NoDisplay=false
+    X-GNOME-Autostart-enabled=true
+    Name=Apply gsettings
+    Comment=Disable screen lock and power management
+    ' > /home/vagrant/.config/autostart/gsettings-fix.desktop
+
+    # Change ownership of the files to vagrant user
+    chown -R vagrant:vagrant /home/vagrant/.config
+  SHELL
+  end
