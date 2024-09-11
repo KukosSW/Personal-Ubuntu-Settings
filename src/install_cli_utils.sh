@@ -89,6 +89,7 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "ftp" || return 1
     PersonalSettings::PackageManager::Apt::install "rsync" || return 1
     PersonalSettings::PackageManager::Apt::install "speedtest-cli" || return 1
+    PersonalSettings::PackageManager::Apt::install "sshpass" || return 1
 
     # TERMINAL UTILITIES
     PersonalSettings::PackageManager::Apt::install "tmux" || return 1
