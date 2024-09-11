@@ -127,6 +127,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_docker.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_vagrant.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
 }
 
@@ -244,6 +245,15 @@ function Test::TestCase::install_docker()
     Test::Utils::test "PersonalSettings::Installer::install_docker::docker" "docker --version"
 }
 
+function Test::TestCase::install_vagrant()
+{
+    source "${PROJECT_TOP_DIR}/src/install_vagrant.sh"
+
+    Test::Utils::test "PersonalSettings::Installer::install_vagrant" "PersonalSettings::Installer::install_vagrant"
+
+    Test::Utils::test "PersonalSettings::Installer::install_vagrant::vagrant" "vagrant --version"
+}
+
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
@@ -256,6 +266,7 @@ function Test::TestSuite::run()
     Test::TestCase::install_latex
     Test::TestCase::install_virtualbox
     Test::TestCase::install_docker
+    Test::TestCase::install_vagrant
 }
 
 Test::TestSuite::run
