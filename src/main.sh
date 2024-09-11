@@ -80,6 +80,15 @@ else
     exit 1
 fi
 
+INSTALL_DOCKER_PATH="${PROJECT_TOP_DIR}/src/install_docker.sh"
+if [[ -f "${INSTALL_DOCKER_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_DOCKER_PATH}"
+else
+    echo "Error: Could not find install_docker.sh at ${INSTALL_DOCKER_PATH}"
+    exit 1
+fi
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -111,6 +120,7 @@ function PersonalSettings::main()
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1
     PersonalSettings::Installer::install_latex || exit 1
     PersonalSettings::Installer::install_virtualbox || exit 1
+    PersonalSettings::Installer::install_docker || exit 1
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1

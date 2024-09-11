@@ -126,6 +126,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_c_cpp_devtools.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_docker.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
 }
 
@@ -225,6 +226,24 @@ function Test::TestCase::install_virtualbox()
     Test::Utils::test "PersonalSettings::Installer::install_virtualbox::vboxmanage" "vboxmanage --version"
 }
 
+function Test::TestCase::install_docker()
+{
+    source "${PROJECT_TOP_DIR}/src/install_docker.sh"
+
+    #shellcheck disable=SC2312
+    if uname -r | grep -q "azure"; then
+        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping docker installation and tests"
+        return 0
+    elif [[ -f "/.dockerenv" ]]; then
+        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping docker installation and tests"
+        return 0
+    fi
+
+    Test::Utils::test "PersonalSettings::Installer::install_docker" "PersonalSettings::Installer::install_docker"
+
+    Test::Utils::test "PersonalSettings::Installer::install_docker::docker" "docker --version"
+}
+
 function Test::TestSuite::run()
 {
     Test::TestCase::shellcheck
@@ -236,6 +255,7 @@ function Test::TestSuite::run()
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_latex
     Test::TestCase::install_virtualbox
+    Test::TestCase::install_docker
 }
 
 Test::TestSuite::run
