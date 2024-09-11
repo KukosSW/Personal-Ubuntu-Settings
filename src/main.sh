@@ -89,6 +89,15 @@ else
     exit 1
 fi
 
+INSTALL_VAGRANT_PATH="${PROJECT_TOP_DIR}/src/install_vagrant.sh"
+if [[ -f "${INSTALL_VAGRANT_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_VAGRANT_PATH}"
+else
+    echo "Error: Could not find install_vagrant.sh at ${INSTALL_VAGRANT_PATH}"
+    exit 1
+fi
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -121,6 +130,7 @@ function PersonalSettings::main()
     PersonalSettings::Installer::install_latex || exit 1
     PersonalSettings::Installer::install_virtualbox || exit 1
     PersonalSettings::Installer::install_docker || exit 1
+    PersonalSettings::Installer::install_vagrant || exit 1
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
