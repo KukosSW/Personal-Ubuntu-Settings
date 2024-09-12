@@ -90,6 +90,16 @@ function Test::Utils::test()
     fi
 }
 
+function Test::TestCase::install_cli_utils()
+{
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::curl" "curl --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::gawk" "awk --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::tree" "tree --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::rsync" "rsync --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::nmap" "nmap --version"
+    Test::Utils::test "PersonalSettings::Installer::install_cli_utils::nala" "nala --version"
+}
+
 function Test::TestCase::install_git()
 {
     Test::Utils::test "PersonalSettings::Installer::install_git::config::user" "git config --list | grep -q \"user.email=kukossw@gmail.com\""
@@ -124,12 +134,43 @@ function Test::TestCase::install_latex()
     Test::Utils::test "PersonalSettings::PackageManager::Apt::install::gnuplot" "aspell --version"
 }
 
+function Test::TestCase::install_virtualbox()
+{
+    # virtualbox --version starts the GUI, so we need to use --help
+    Test::Utils::test "PersonalSettings::Installer::install_virtualbox::virtualbox" "virtualbox --help"
+    Test::Utils::test "PersonalSettings::Installer::install_virtualbox::vboxmanage" "vboxmanage --version"
+}
+
+function Test::TestCase::install_docker()
+{
+    #shellcheck disable=SC2312
+    if uname -r | grep -q "azure"; then
+        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping docker installation and tests"
+        return 0
+    elif [[ -f "/.dockerenv" ]]; then
+        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping docker installation and tests"
+        return 0
+    fi
+
+    Test::Utils::test "PersonalSettings::Installer::install_docker::docker" "docker --version"
+}
+
+function Test::TestCase::install_vagrant()
+{
+    Test::Utils::test "PersonalSettings::Installer::install_vagrant::vagrant" "vagrant --version"
+}
+
 function Test::TestSuite::E2E::run()
 {
     "${PROJECT_TOP_DIR}/src/main.sh"
 
+    Test::TestCase::install_cli_utils
     Test::TestCase::install_git
     Test::TestCase::install_c_cpp_devtools
+    Test::TestCase::install_latex
+    Test::TestCase::install_virtualbox
+    Test::TestCase::install_docker
+    Test::TestCase::install_vagrant
 }
 
 Test::TestSuite::E2E::run
