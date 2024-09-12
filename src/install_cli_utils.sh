@@ -115,7 +115,12 @@ PersonalSettings::Installer::install_cli_utils()
     # OTHER UTILITIES
     PersonalSettings::PackageManager::Apt::install "nala" || return 1
     PersonalSettings::PackageManager::Apt::install "shellcheck" || return 1
+    PersonalSettings::PackageManager::Apt::install "jq" || return 1
     PersonalSettings::PackageManager::Apt::install "software-properties-common" || return 1
+    PersonalSettings::PackageManager::Apt::install "apt-transport-https" || return 1
+    PersonalSettings::PackageManager::Apt::install "ca-certificates" || return 1
+    PersonalSettings::PackageManager::Apt::install "gnupg" || return 1
+    PersonalSettings::PackageManager::Apt::install "gnupg-agent" || return 1
 
     PersonalSettings::Utils::Message::success "CLI utilities installed"
 
