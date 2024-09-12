@@ -139,6 +139,18 @@ function PersonalSettings::DevEnv::install()
     sudo apt install -y shellcheck || return 1
     sudo apt install -y jq || return 1
 
+    if uname -r | grep -q "azure"; then
+        echo "Azure kernel detected. Skipping kernel development tools installation, most probably VirtualBox and vagrant will not work"
+    elif [[ -f "/.dockerenv" ]]; then
+        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping kernel development tools installation, most probably VirtualBox and vagrant will not work"
+    else
+        #shellcheck disable=SC2312
+        PersonalSettings::PackageManager::Apt::install "linux-headers-$(uname -r)" || return 1
+
+        #shellcheck disable=SC2312
+        PersonalSettings::PackageManager::Apt::install "linux-tools-$(uname -r)" || return 1
+    fi
+
     PersonalSettings::DevEnv::install_docker || return 1
     PersonalSettings::DevEnv::install_virtualbox || return 1
     PersonalSettings::DevEnv::install_vagrant || return 1
