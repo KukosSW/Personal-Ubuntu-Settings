@@ -18,5 +18,6 @@ jobs:
 
     - name: Run tests as the developer
       run : |
+        ./devenv_install.sh
         test/test_docker_main.sh
 
