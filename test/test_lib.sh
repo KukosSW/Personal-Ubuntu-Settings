@@ -23,7 +23,7 @@ export PERSONAL_SETTINGS_TEST_LIB_SOURCED=1
 function Test::Utils::fail()
 {
     local test_name="${1}"
-    printf "%b[TEST] FAILED: %s%b\n" "\033[0;31m" "${test_name}" "\033[0m"
+    printf "%b[TEST] FAILED:  %s%b\n" "\033[0;31m" "${test_name}" "\033[0m"
 
     return 1
 }
@@ -41,7 +41,7 @@ function Test::Utils::fail()
 function Test::Utils::pass()
 {
     local test_name="${1}"
-    printf "%b[TEST] PASSED: %s%b\n" "\033[0;32m" "${test_name}"  "\033[0m"
+    printf "%b[TEST] PASSED:  %s%b\n" "\033[0;32m" "${test_name}"  "\033[0m"
 }
 
 # @brief Function to run a test
@@ -80,7 +80,7 @@ function Test::Utils::test()
     local temp_log_file
     temp_log_file=$(mktemp)
 
-    printf "%b[TEST] Running: ${test_name}%b\n" "\033[0;33m" "\033[0m"
+    printf "%b[TEST] RUNNING: ${test_name}%b\n" "\033[0;33m" "\033[0m"
 
     if eval "${test_command}" "${test_args[@]}" >"${temp_log_file}" 2>&1; then
         Test::Utils::pass "${test_name}"
@@ -112,7 +112,7 @@ function Test::Utils::shellcheck_check()
 {
     local script="${1}"
 
-    printf "%b[TEST] Running: Shellcheck: ${script}%b\n" "\033[0;33m" "\033[0m"
+    printf "%b[TEST] RUNNING: Shellcheck: ${script}%b\n" "\033[0;33m" "\033[0m"
     if shellcheck --shell=bash --enable=all --external-sources "${script}"; then
         Test::Utils::pass "Shellcheck: ${script}"
 
