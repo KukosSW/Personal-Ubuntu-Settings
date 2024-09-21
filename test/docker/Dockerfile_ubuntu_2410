@@ -33,4 +33,4 @@ COPY . /usr/local/src/personal-ubuntu-setup/
 RUN chmod +x /usr/local/src/personal-ubuntu-setup/test/*.sh
 
 # Run the script on the image startup via ENTRYPOINT
-ENTRYPOINT ["/usr/local/src/personal-ubuntu-setup/test/test_local_main.sh"]
+ENTRYPOINT ["/usr/local/src/personal-ubuntu-setup/test/test_unit_main.sh"]
