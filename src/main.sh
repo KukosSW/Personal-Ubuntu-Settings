@@ -107,6 +107,34 @@ else
     exit 1
 fi
 
+function PersonalSettings::install_prerequisites()
+{
+    PersonalSettings::Utils::Message::info "Installing prerequisites: coreutils, software-properties-common, apt-transport-https, ca-certificates, grep, sed, gawk, curl, wget, tar, jq, sshpass, rsync, unzip, zip, util-linux, pciutils, dmidecode"
+
+    sudo apt install -y coreutils >/dev/null 2>&1 || return 1
+    sudo apt install -y software-properties-common >/dev/null 2>&1 || return 1
+    sudo apt install -y apt-transport-https >/dev/null 2>&1 || return 1
+    sudo apt install -y ca-certificates >/dev/null 2>&1 || return 1
+    sudo apt install -y grep >/dev/null 2>&1 || return 1
+    sudo apt install -y sed >/dev/null 2>&1 || return 1
+    sudo apt install -y gawk >/dev/null 2>&1 || return 1
+    sudo apt install -y curl >/dev/null 2>&1 || return 1
+    sudo apt install -y wget >/dev/null 2>&1 || return 1
+    sudo apt install -y tar >/dev/null 2>&1 || return 1
+    sudo apt install -y jq >/dev/null 2>&1 || return 1
+    sudo apt install -y sshpass >/dev/null 2>&1 || return 1
+    sudo apt install -y rsync >/dev/null 2>&1 || return 1
+    sudo apt install -y unzip >/dev/null 2>&1 || return 1
+    sudo apt install -y zip >/dev/null 2>&1 || return 1
+    sudo apt install -y util-linux >/dev/null 2>&1 || return 1
+    sudo apt install -y pciutils >/dev/null 2>&1 || return 1
+    sudo apt install -y dmidecode >/dev/null 2>&1 || return 1
+
+    PersonalSettings::Utils::Message::success "Prerequisites installed successfully"
+
+    return 0
+}
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -116,6 +144,8 @@ fi
 function PersonalSettings::main()
 {
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
+
+    PersonalSettings::install_prerequisites || exit 1
 
     if ! PersonalSettings::OSInfo::is_linux; then
         PersonalSettings::Utils::Message::error "This script is only for Linux"
