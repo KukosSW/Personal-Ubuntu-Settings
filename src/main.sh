@@ -117,6 +117,17 @@ function PersonalSettings::main()
 {
     PersonalSettings::Utils::Message::info "STARTING PERSONAL SETTINGS"
 
+    if ! PersonalSettings::OSInfo::is_linux; then
+        PersonalSettings::Utils::Message::error "This script is only for Linux"
+        return 1
+    fi
+
+    # shellcheck disable=SC2312
+    if ! PersonalSettings::OSInfo::package_manager | grep -q "apt"; then
+        PersonalSettings::Utils::Message::error "This script is only for apt package manager"
+        return 1
+    fi
+
     # Sudo has 15 minutes timeout by default, because of that, in "random" moments the script will ask for the password.
     # To avoid that, we need to do 2 things:
     # 1. Run the script with sudo and provide the password at the beginning. (sudo -v)
