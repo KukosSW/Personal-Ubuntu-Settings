@@ -38,6 +38,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/message.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/osinfo.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/package_manager.sh"
 }
 
