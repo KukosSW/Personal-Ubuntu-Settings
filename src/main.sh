@@ -98,6 +98,15 @@ else
     exit 1
 fi
 
+OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${OSINFO_PATH}"
+else
+    echo "Error: Could not find osinfo.sh at ${OSINFO_PATH}"
+    exit 1
+fi
+
 # @brief Main function for the personal settings
 #
 # USAGE:
@@ -114,6 +123,9 @@ function PersonalSettings::main()
     # 2. Run in background a process that will keep the sudo session alive. (while true; do sudo -v; sleep 60; done &)
     sudo -v
     while true; do sudo -v; sleep 60; done &
+
+    # Show OS information
+    PersonalSettings::OSInfo::print_full_info
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
