@@ -6,13 +6,6 @@ set -Eu
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_TOP_DIR="${SCRIPT_DIR}/.."
 
-# Prevent double sourcing
-if [[ -n "${PERSONAL_SETTINGS_INSTALLER_CLI_UTILS_SOURCED:-}" ]]; then
-    return 0
-fi
-
-export PERSONAL_SETTINGS_INSTALLER_CLI_UTILS_SOURCED=1
-
 # source libraries
 MESSAGE_PATH="${PROJECT_TOP_DIR}/src/message.sh"
 if [[ -f "${MESSAGE_PATH}" ]]; then

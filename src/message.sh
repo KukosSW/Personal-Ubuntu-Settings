@@ -7,14 +7,6 @@ set -Eu
 # PROJECT_TOP_DIR="${SCRIPT_DIR}/.."
 
 
-# Prevent double sourcing
-if [[ -n "${PERSONAL_SETTINGS_MESSAGE_SOURCED:-}" ]]; then
-    return 0
-fi
-
-export PERSONAL_SETTINGS_MESSAGE_SOURCED=1
-
-
 # @brief Private function to print messages to the stderr
 #
 # USAGE:
