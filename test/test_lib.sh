@@ -3,13 +3,6 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_TOP_DIR="${SCRIPT_DIR}/.."
 
-# Prevent double sourcing
-if [[ -n "${PERSONAL_SETTINGS_TEST_LIB_SOURCED:-}" ]]; then
-    return 0
-fi
-
-export PERSONAL_SETTINGS_TEST_LIB_SOURCED=1
-
 # @brief Function to print a test failed message
 #
 # USAGE:
