@@ -20,6 +20,15 @@ else
     exit 1
 fi
 
+MESSAGE_PATH="${PROJECT_TOP_DIR}/src/message.sh"
+if [[ -f "${MESSAGE_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${MESSAGE_PATH}"
+else
+    echo "Error: Could not find message.sh at ${MESSAGE_PATH}"
+    exit 1
+fi
+
 function Test::TestCase::package_manager()
 {
     source "${PROJECT_TOP_DIR}/src/package_manager.sh"
