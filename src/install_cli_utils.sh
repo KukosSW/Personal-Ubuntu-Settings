@@ -45,6 +45,7 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "sed" || return 1
     PersonalSettings::PackageManager::Apt::install "grep" || return 1
     PersonalSettings::PackageManager::Apt::install "apt-rdepends" || return 1
+    PersonalSettings::PackageManager::Apt::install "plocate" || return 1
 
 
     # MONITORING UTILITIES
