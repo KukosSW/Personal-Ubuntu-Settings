@@ -90,6 +90,40 @@ function Test::Utils::test()
     fi
 }
 
+# @brief Function to check if a command is available
+#
+# USAGE:
+#   Test::Utils::is_command_available "TEST command" "command"
+# OUTPUT:
+#   [TEST] Running: Test name
+#   [TEST] PASSED: Test name
+#
+# @param $1 - Test Name
+# @param $2 - command
+#
+# @return 0 OR exit 1
+function Test::Utils::is_command_available()
+{
+    Test::Utils::test "${1}" "command -v ${2}"
+}
+
+# @brief Function to check if a package is installed
+#
+# USAGE:
+#   Test::Utils::is_installed "TEST package" "package"
+# OUTPUT:
+#   [TEST] Running: Test name
+#   [TEST] PASSED: Test name
+#
+# @param $1 - Test Name
+# @param $2 - command
+#
+# @return 0 OR exit 1
+function Test::Utils::is_installed()
+{
+    Test::Utils::test "${1}" "(apt -qq list ${2} | grep -q 'installed') || (dpkg -l | grep -E '^ii' | grep -q -w -P '^\S+\s+${2}\s')"
+}
+
 # @brief Function to run shellcheck on a script
 #
 # USAGE:
