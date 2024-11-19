@@ -505,13 +505,34 @@ function Test::TestCase::install_git()
 
 function Test::TestCase::install_latex()
 {
-    Test::Utils::is_installed         "Installer::install_latex::installed::latex" "texlive-full"
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-full" "texlive-full"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::tex" "tex"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::latex" "latex"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdflatex" "pdflatex"
 
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-latex-extra" "texlive-latex-extra"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-latex-recommended" "texlive-latex-recommended"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-fonts-extra" "texlive-fonts-extra"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-fonts-recommended" "texlive-fonts-recommended"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-lang-polish" "texlive-lang-polish"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texmaker" "texmaker"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::texmaker" "texmaker"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::kile" "kile"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::kile" "kile"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texworks" "texworks"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::texworks" "texworks"
+
     Test::Utils::is_installed         "Installer::install_latex::installed::biber" "biber"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::biber" "biber"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-bibtex-extra" "texlive-bibtex-extra"
 
     Test::Utils::is_installed         "Installer::install_latex::installed::imagemagick" "imagemagick"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::convert" "convert"
@@ -527,6 +548,8 @@ function Test::TestCase::install_latex()
 
     Test::Utils::is_installed         "Installer::install_latex::installed::gnuplot" "gnuplot"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::gnuplot" "gnuplot"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::texlive-pictures" "texlive-pictures"
 
     Test::Utils::is_installed         "Installer::install_latex::installed::latexdiff" "latexdiff"
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::latexdiff" "latexdiff"
