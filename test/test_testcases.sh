@@ -183,6 +183,9 @@ function Test::TestCase::install_cli_utils()
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::neofetch" "neofetch"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::neofetch" "neofetch"
 
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::fastfetch" "fastfetch"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::fastfetch" "fastfetch"
+
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::unzip" "unzip"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::unzip" "unzip"
 
