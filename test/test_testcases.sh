@@ -45,113 +45,182 @@ function Test::TestCase::package_manager()
 
 function Test::TestCase::install_c_cpp_devtools()
 {
-    Test::Utils::test "Installer::install_c_cpp_devtools::make" "make --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::cmake" "cmake --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::ninja" "ninja --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::meson" "meson --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::autoconf" "autoconf --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::automake" "automake --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::pkg-config" "pkg-config --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::ccache" "ccache --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::make" "make"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::make" "make"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::gcc" "gcc --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::g++" "g++ --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::clang" "clang --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::clang++" "clang++ --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::cmake" "cmake"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::cmake" "cmake"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::gdb" "gdb --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ninja" "ninja-build"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::ninja" "ninja"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::valgrind" "valgrind --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::clang-format" "clang-format --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::clang-tidy" "clang-tidy --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::cppcheck" "cppcheck --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::meson" "meson"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::meson" "meson"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::doxygen" "doxygen --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::graphviz" "dot -V"
-    Test::Utils::test "Installer::install_c_cpp_devtools::pandoc" "pandoc --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::groff" "groff --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::ghostscript" "ghostscript --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::wkhtmltopdf" "wkhtmltopdf --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::autoconf" "autoconf"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::autoconf" "autoconf"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::flex" "flex --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::bison" "bison --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::strace" "strace --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::ltrace" "ltrace --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::automake" "automake"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::automake" "automake"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::libtool" "libtool --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::libtoolize" "libtoolize --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::pkg-config" "pkg-config"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::pkg-config" "pkg-config"
 
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-x86" "qemu-system-x86_64 --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-arm" "qemu-system-arm --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-mips" "qemu-system-mips --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-ppc" "qemu-system-ppc --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-sparc" "qemu-system-sparc --version"
-    Test::Utils::test "Installer::install_c_cpp_devtools::qemu-riscv" "qemu-system-riscv64 --version"
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ccache" "ccache"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::ccache" "ccache"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::gcc" "gcc"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::gcc" "gcc"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::g++" "g++"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::g++" "g++"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::clang" "clang"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::clang" "clang"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::clang++" "clang++"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::clang++" "clang++"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::gdb" "gdb"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::gdb" "gdb"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::valgrind" "valgrind"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::valgrind" "valgrind"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::clang-format" "clang-format"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::clang-format" "clang-format"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::clang-tidy" "clang-tidy"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::clang-tidy" "clang-tidy"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::cppcheck" "cppcheck"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::cppcheck" "cppcheck"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::doxygen" "doxygen"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::doxygen" "doxygen"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::graphviz" "graphviz"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::dot" "dot"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::pandoc" "pandoc"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::pandoc" "pandoc"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::groff" "groff"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::groff" "groff"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ghostscript" "ghostscript"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::ghostscript" "ghostscript"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::wkhtmltopdf" "wkhtmltopdf"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::wkhtmltopdf" "wkhtmltopdf"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::flex" "flex"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::flex" "flex"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::bison" "bison"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::bison" "bison"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::strace" "strace"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::strace" "strace"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ltrace" "ltrace"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::ltrace" "ltrace"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libtool" "libtool"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::libtool" "libtool"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-x86" "qemu-system-x86"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-x86" "qemu-system-x86_64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-arm" "qemu-system-arm"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-arm" "qemu-system-arm"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-mips" "qemu-system-mips"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-mips" "qemu-system-mips"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-ppc" "qemu-system-ppc"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-ppc" "qemu-system-ppc"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-sparc" "qemu-system-sparc"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-sparc" "qemu-system-sparc"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-riscv" "qemu-system-misc"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-riscv" "qemu-system-riscv64"
 }
 
 function Test::TestCase::install_cli_utils()
 {
-    Test::Utils::test "Installer::install_cli_utils::bc" "bc --version"
-    Test::Utils::test "Installer::install_cli_utils::curl" "curl --version"
-    Test::Utils::test "Installer::install_cli_utils::wget" "wget --version"
-    Test::Utils::test "Installer::install_cli_utils::tree" "tree --version"
-    Test::Utils::test "Installer::install_cli_utils::tar" "tar --version"
-    Test::Utils::test "Installer::install_cli_utils::gawk" "gawk --version"
-    Test::Utils::test "Installer::install_cli_utils::awk" "awk --version"
-    Test::Utils::test "Installer::install_cli_utils::sed" "sed --version"
-    Test::Utils::test "Installer::install_cli_utils::grep" "grep --version"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::bc" "bc"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::bc" "bc"
 
-    Test::Utils::test "Installer::install_cli_utils::htop" "htop --version"
-    Test::Utils::test "Installer::install_cli_utils::btop" "btop --version"
-    Test::Utils::test "Installer::install_cli_utils::neofetch" "command -v neofetch"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::curl" "curl"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::curl" "curl"
 
-    Test::Utils::test "Installer::install_cli_utils::unzip" "command -v unzip"
-    Test::Utils::test "Installer::install_cli_utils::zip" "zip --version"
-    Test::Utils::test "Installer::install_cli_utils::gzip" "gzip --version"
-    Test::Utils::test "Installer::install_cli_utils::bzip2" "bzip2 --version"
-    Test::Utils::test "Installer::install_cli_utils::xz-utils" "xz --version"
-    Test::Utils::test "Installer::install_cli_utils::p7zip" "command -v 7z"
-    Test::Utils::test "Installer::install_cli_utils::rar" "command -v rar"
-    Test::Utils::test "Installer::install_cli_utils::unrar" "command -v unrar"
-    Test::Utils::test "Installer::install_cli_utils::lzma" "lzma --version"
-    Test::Utils::test "Installer::install_cli_utils::zstd" "zstd --version"
-    Test::Utils::test "Installer::install_cli_utils::arj" "command -v arj"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::wget" "wget"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::wget" "wget"
 
-    Test::Utils::test "Installer::install_cli_utils::net-tools" "ifconfig --version"
-    Test::Utils::test "Installer::install_cli_utils::nmap" "nmap --version"
-    Test::Utils::test "Installer::install_cli_utils::traceroute" "traceroute --version"
-    Test::Utils::test "Installer::install_cli_utils::whois" "whois --version"
-    Test::Utils::test "Installer::install_cli_utils::ipcalc" "ipcalc --version"
-    Test::Utils::test "Installer::install_cli_utils::iputils-ping" "command -v ping"
-    Test::Utils::test "Installer::install_cli_utils::iputils-tracepath" "command -v tracepath"
-    Test::Utils::test "Installer::install_cli_utils::iputils-arping" "command -v arping"
-    Test::Utils::test "Installer::install_cli_utils::iproute2" "command -v ip"
-    Test::Utils::test "Installer::install_cli_utils::dnsutils" "command -v dig"
-    Test::Utils::test "Installer::install_cli_utils::tcpdump" "tcpdump --version"
-    Test::Utils::test "Installer::install_cli_utils::openssh-client" "command -v ssh"
-    Test::Utils::test "Installer::install_cli_utils::openssh-server" "command -v sshd"
-    Test::Utils::test "Installer::install_cli_utils::telnet" "telnet --version"
-    Test::Utils::test "Installer::install_cli_utils::ftp" "command -v ftp"
-    Test::Utils::test "Installer::install_cli_utils::rsync" "rsync --version"
-    Test::Utils::test "Installer::install_cli_utils::speedtest-cli" "speedtest --version"
-    Test::Utils::test "Installer::install_cli_utils::sshpass" "command -v sshpass"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::tree" "tree"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tree" "tree"
 
-    Test::Utils::test "Installer::install_cli_utils::tmux" "command -v tmux"
-    Test::Utils::test "Installer::install_cli_utils::screen" "command -v screen"
-    Test::Utils::test "Installer::install_cli_utils::gnome-terminal" "command -v gnome-terminal"
-    Test::Utils::test "Installer::install_cli_utils::xfce4-terminal" "command -v xfce4-terminal"
-    Test::Utils::test "Installer::install_cli_utils::kitty" "command -v kitty"
-    Test::Utils::test "Installer::install_cli_utils::xterm" "command -v xterm"
-    Test::Utils::test "Installer::install_cli_utils::tilix" "command -v tilix"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::tar" "tar"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tar" "tar"
 
-    Test::Utils::test "Installer::install_cli_utils::vim" "vim --version"
-    Test::Utils::test "Installer::install_cli_utils::nano" "nano --version"
-    Test::Utils::test "Installer::install_cli_utils::gedit" "gedit --version"
-    Test::Utils::test "Installer::install_cli_utils::nvim" "nvim --version"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gawk" "gawk"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::gawk" "gawk"
 
-    Test::Utils::test "Installer::install_cli_utils::nala" "nala --version"
-    Test::Utils::test "Installer::install_cli_utils::shellcheck" "shellcheck --version"
-    Test::Utils::test "Installer::install_cli_utils::jq" "jq --version"
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::sed" "sed"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::sed" "sed"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::grep" "grep"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::grep" "grep"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::htop" "htop"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::htop" "htop"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::btop" "btop"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::btop" "btop"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::neofetch" "neofetch"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::neofetch" "neofetch"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::unzip" "unzip"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::unzip" "unzip"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::zip" "zip"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::zip" "zip"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gzip" "gzip"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::gzip" "gzip"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::bzip2" "bzip2"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::bzip2" "bzip2"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::xz-utils" "xz-utils"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::xz-utils" "xz"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::p7zip" "p7zip"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::p7zip" "p7zip"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::vim" "vim"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::vim" "vim"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::nano" "nano"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::nano" "nano"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gedit" "gedit"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::gedit" "gedit"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::nvim" "neovim"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::nvim" "nvim"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::nala" "nala"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::nala" "nala"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::shellcheck" "shellcheck"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::shellcheck" "shellcheck"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::jq" "jq"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::jq" "jq"
 }
 
 function Test::TestCase::install_docker()
@@ -165,12 +234,15 @@ function Test::TestCase::install_docker()
         return 0
     fi
 
-    Test::Utils::test "Installer::install_docker::docker" "docker --version"
+    Test::Utils::is_installed         "Installer::install_docker::installed::docker" "docker-ce"
+    Test::Utils::is_command_available "Installer::install_docker::cmd_available::docker" "docker"
 }
 
 function Test::TestCase::install_git()
 {
-    Test::Utils::test "Installer::install_git::git" "git --version"
+    Test::Utils::is_installed         "Installer::install_git::installed::git" "git"
+    Test::Utils::is_command_available "Installer::install_git::cmd_available::git" "git"
+
     Test::Utils::test "Installer::install_git::config::user" "git config --list | grep -q \"user.email=kukossw@gmail.com\""
     Test::Utils::test "Installer::install_git::config::editor" "git config --list | grep -q \"core.editor=nvim\""
     Test::Utils::test "Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
@@ -178,30 +250,53 @@ function Test::TestCase::install_git()
 
 function Test::TestCase::install_latex()
 {
-    Test::Utils::test "Installer::install_latex::latex" "latex --version"
-    Test::Utils::test "Installer::install_latex::biber" "biber --version"
-    Test::Utils::test "Installer::install_latex::imagemagick" "convert --version"
-    Test::Utils::test "Installer::install_latex::pdf2svg" "command -v pdf2svg"
-    Test::Utils::test "Installer::install_latex::ghostscript" "gs --version"
-    Test::Utils::test "Installer::install_latex::texlive-full" "tex --version"
-    Test::Utils::test "Installer::install_latex::pdflatex" "pdflatex --version"
-    Test::Utils::test "Installer::install_latex::fontconfig" "fc-list"
-    Test::Utils::test "Installer::install_latex::gnuplot" "gnuplot --version"
-    Test::Utils::test "Installer::install_latex::latexdiff" "latexdiff --version"
-    Test::Utils::test "Installer::install_latex::aspell" "aspell --version"
-    Test::Utils::test "Installer::install_latex::hunspell" "hunspell --version"
-    Test::Utils::test "Installer::install_latex::pdftk" "pdftk --version"
-    Test::Utils::test "Installer::install_latex::poppler-utils" "command -v pdfinfo"
+    Test::Utils::is_installed         "Installer::install_latex::installed::latex" "texlive-full"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::tex" "tex"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::latex" "latex"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdflatex" "pdflatex"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::biber" "biber"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::biber" "biber"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::imagemagick" "imagemagick"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::convert" "convert"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::pdf2svg" "pdf2svg"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdf2svg" "pdf2svg"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::ghostscript" "ghostscript"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::gs" "gs"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::fontconfig" "fontconfig"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::fc-list" "fc-list"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::gnuplot" "gnuplot"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::gnuplot" "gnuplot"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::latexdiff" "latexdiff"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::latexdiff" "latexdiff"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::aspell" "aspell"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::aspell" "aspell"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::hunspell" "hunspell"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::hunspell" "hunspell"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::pdftk" "pdftk-java"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdftk" "pdftk"
+
+    Test::Utils::is_installed         "Installer::install_latex::installed::poppler-utils" "poppler-utils"
+    Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdfinfo" "pdfinfo"
 }
 
 function Test::TestCase::install_vagrant()
 {
-    Test::Utils::test "Installer::install_vagrant::vagrant" "vagrant --version"
+    Test::Utils::is_installed         "Installer::install_vagrant::installed::vagrant" "vagrant"
+    Test::Utils::is_command_available "Installer::install_vagrant::cmd_available::vagrant" "vagrant"
 }
 
 function Test::TestCase::install_virtualbox()
 {
-    # virtualbox --version starts the GUI, so we need to use --help
-    Test::Utils::test "Installer::install_virtualbox::virtualbox" "virtualbox --help"
-    Test::Utils::test "Installer::install_virtualbox::vboxmanage" "vboxmanage --version"
+    Test::Utils::is_installed         "Installer::install_virtualbox::installed::virtualbox" "virtualbox"
+    Test::Utils::is_command_available "Installer::install_virtualbox::cmd_available::vboxmanage" "vboxmanage"
 }
