@@ -53,6 +53,9 @@ PersonalSettings::Installer::install_cli_utils()
     PersonalSettings::PackageManager::Apt::install "btop" || return 1
     PersonalSettings::PackageManager::Apt::install "neofetch" || return 1
 
+    PersonalSettings::PackageManager::Apt::add_repository "ppa:zhangsongcui3371/fastfetch" || return 1
+    PersonalSettings::PackageManager::Apt::install "fastfetch" || return 1
+
     # COMPRESSION UTILITIES
     PersonalSettings::PackageManager::Apt::install "unzip" || return 1
     PersonalSettings::PackageManager::Apt::install "zip" || return 1
