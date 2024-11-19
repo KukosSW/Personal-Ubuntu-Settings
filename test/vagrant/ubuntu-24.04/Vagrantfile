@@ -66,7 +66,7 @@ Vagrant.configure("2") do |config|
     mkdir -p /home/vagrant/.config/autostart
 
     # Create a script to disable screen locking and power management settings after login
-    echo '#!/bin/bash
+    echo '#!/usr/bin/env bash
     export DISPLAY=:0
     gsettings set org.gnome.desktop.screensaver lock-enabled false
     gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type nothing
