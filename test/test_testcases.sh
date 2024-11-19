@@ -45,6 +45,8 @@ function Test::TestCase::package_manager()
 
 function Test::TestCase::install_c_cpp_devtools()
 {
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::build-essential" "build-essential"
+
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::make" "make"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::make" "make"
 
@@ -114,6 +116,8 @@ function Test::TestCase::install_c_cpp_devtools()
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::wkhtmltopdf" "wkhtmltopdf"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::wkhtmltopdf" "wkhtmltopdf"
 
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::llvm" "llvm"
+
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::flex" "flex"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::flex" "flex"
 
@@ -125,6 +129,12 @@ function Test::TestCase::install_c_cpp_devtools()
 
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ltrace" "ltrace"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::ltrace" "ltrace"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::binutils" "binutils"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::elfutils" "elfutils"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libelf-dev" "libelf-dev"
 
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libtool" "libtool"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::libtool" "libtool"
@@ -146,6 +156,140 @@ function Test::TestCase::install_c_cpp_devtools()
 
     Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-riscv" "qemu-system-misc"
     Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qemu-riscv" "qemu-system-riscv64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-user" "qemu-user"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-user-binfmt" "qemu-user-binfmt"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-utils" "qemu-utils"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-efi-arm" "qemu-efi-arm"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qemu-efi-aarch64" "qemu-efi-aarch64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::ovmf" "ovmf"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::virt-manager" "virt-manager"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libvirt-daemon-system" "libvirt-daemon-system"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libvirt-clients" "libvirt-clients"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libssl-dev" "libssl-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libcurl4-openssl-dev" "libcurl4-openssl-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libreadline-dev" "libreadline-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libncurses-dev" "libncurses-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libsqlite3-dev" "libsqlite3-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libxml2-dev" "libxml2-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libxslt1-dev" "libxslt1-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libyaml-dev" "libyaml-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libffi-dev" "libffi-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libgdbm-dev" "libgdbm-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libbz2-dev" "libbz2-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::liblzma-dev" "liblzma-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libzstd-dev" "libzstd-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::liblz4-dev" "liblz4-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libpcre2-dev" "libpcre2-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libpcre3-dev" "libpcre3-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libpcre-ocaml-dev" "libpcre-ocaml-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtbase5-dev" "qtbase5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtchooser" "qtchooser"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qtchooser" "qtchooser"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt5-qmake" "qt5-qmake"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtbase5-dev-tools" "qtbase5-dev-tools"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qttools5-dev" "qttools5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qttools5-dev-tools" "qttools5-dev-tools"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtcreator" "qtcreator"
+    Test::Utils::is_command_available "Installer::install_c_cpp_devtools::cmd_available::qtcreator" "qtcreator"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5widgets5t64" "libqt5widgets5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5gui5t64" "libqt5gui5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5core5t64" "libqt5core5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5network5t64" "libqt5network5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5multimedia5" "libqt5multimedia5"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5multimedia5-plugins" "libqt5multimedia5-plugins"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtmultimedia5-dev" "qtmultimedia5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5xml5t64" "libqt5xml5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5svg5-dev" "libqt5svg5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5quick5" "libqt5quick5"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtdeclarative5-dev" "qtdeclarative5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5sql5t64" "libqt5sql5t64"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5sql5-sqlite" "libqt5sql5-sqlite"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::libqt5opengl5-dev" "libqt5opengl5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtquickcontrols2-5-dev" "qtquickcontrols2-5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qml-module-qtquick-controls2" "qml-module-qtquick-controls2"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qtwebengine5-dev" "qtwebengine5-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qml-module-qtwebengine" "qml-module-qtwebengine"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-base-dev" "qt6-base-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-base-dev-tools" "qt6-base-dev-tools"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-tools-dev" "qt6-tools-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-tools-dev-tools" "qt6-tools-dev-tools"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-l10n-tools" "qt6-l10n-tools"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-3d-dev" "qt6-3d-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-svg-dev" "qt6-svg-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-declarative-dev" "qt6-declarative-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-multimedia-dev" "qt6-multimedia-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-networkauth-dev" "qt6-networkauth-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-quick3d-dev" "qt6-quick3d-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-quicktimeline-dev" "qt6-quicktimeline-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-wayland-dev" "qt6-wayland-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-webengine-dev" "qt6-webengine-dev"
+
+    Test::Utils::is_installed         "Installer::install_c_cpp_devtools::installed::qt6-webview-dev" "qt6-webview-dev"
 }
 
 function Test::TestCase::install_cli_utils()
