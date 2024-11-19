@@ -318,6 +318,12 @@ function Test::TestCase::install_cli_utils()
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::grep" "grep"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::grep" "grep"
 
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::apt-rdepends" "apt-rdepends"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::apt-rdepends" "apt-rdepends"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::plocate" "plocate"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::plocate" "plocate"
+
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::htop" "htop"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::htop" "htop"
 
@@ -348,6 +354,98 @@ function Test::TestCase::install_cli_utils()
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::p7zip" "p7zip"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::p7zip" "p7zip"
 
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::p7zip-full" "p7zip-full"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::rar" "rar"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::rar" "rar"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::unrar" "unrar"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::unrar" "unrar"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::lzma" "lzma"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::lzma" "lzma"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::zstd" "zstd"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::zstd" "zstd"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::arj" "arj"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::arj" "arj"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::net-tools" "net-tools"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::nmap" "nmap"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::nmap" "nmap"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::traceroute" "traceroute"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::traceroute" "traceroute"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::whois" "whois"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::whois" "whois"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::ipcalc" "ipcalc"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::ipcalc" "ipcalc"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::iputils-ping" "iputils-ping"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::ping" "ping"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::iputils-tracepath" "iputils-tracepath"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tracepath" "tracepath"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::iputils-arping" "iputils-arping"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::arping" "arping"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::iproute2" "iproute2"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::ip" "ip"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::dnsutils" "dnsutils"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::dig" "dig"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::tcpdump" "tcpdump"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tcpdump" "tcpdump"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::openssh-client" "openssh-client"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::ssh" "ssh"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::openssh-server" "openssh-server"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::sshd" "sshd"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::telnet" "telnet"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::telnet" "telnet"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::ftp" "ftp"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::ftp" "ftp"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::rsync" "rsync"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::rsync" "rsync"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::speedtest-cli" "speedtest-cli"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::speedtest-cli" "speedtest-cli"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::sshpass" "sshpass"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::sshpass" "sshpass"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::tmux" "tmux"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tmux" "tmux"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::screen" "screen"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::screen" "screen"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gnome-terminal" "gnome-terminal"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::gnome-terminal" "gnome-terminal"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::xfce4-terminal" "xfce4-terminal"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::xfce4-terminal" "xfce4-terminal"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::kitty" "kitty"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::kitty" "kitty"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::xterm" "xterm"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::xterm" "xterm"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::tilix" "tilix"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::tilix" "tilix"
+
+
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::vim" "vim"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::vim" "vim"
 
@@ -368,6 +466,16 @@ function Test::TestCase::install_cli_utils()
 
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::jq" "jq"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::jq" "jq"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::software-properties-common" "software-properties-common"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::apt-transport-https" "apt-transport-https"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::ca-certificates" "ca-certificates"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gnupg" "gnupg"
+
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::gnupg-agent" "gnupg-agent"
 }
 
 function Test::TestCase::install_docker()
