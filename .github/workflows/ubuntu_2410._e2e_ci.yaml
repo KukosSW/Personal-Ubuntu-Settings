@@ -18,6 +18,19 @@ jobs:
     - name: Environment Preparation
       uses: actions/checkout@v2
 
+    - name: Disk Preparation
+      run : |
+        df -h
+        sudo apt-get clean
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        df -h
+        mkdir -p $HOME/.fonts
+        sudo mkdir -p /mnt/runner/work/fonts
+        sudo chown -R $USER:$USER /mnt/runner/
+        ln -s /mnt/runner/work/fonts $HOME/.fonts
+
     - name: Run E2E tests
       run : |
         DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_2410 --tag docker_e2e_ubuntu_2410 .
