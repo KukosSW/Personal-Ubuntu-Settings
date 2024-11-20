@@ -16,6 +16,19 @@ jobs:
     - name: Environment Preparation
       uses: actions/checkout@v2
 
+    - name: Disk Preparation
+      run : |
+        df -h
+        sudo apt-get clean
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        df -h
+        mkdir -p $HOME/.fonts
+        sudo mkdir -p /mnt/runner/work/fonts
+        sudo chown -R $USER:$USER /mnt/runner/
+        ln -s /mnt/runner/work/fonts $HOME/.fonts
+
     - name: Run tests as the developer
       run : |
         ./devenv_install.sh
