@@ -25,6 +25,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_c_cpp_devtools.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_cli_utils.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_docker.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_fonts.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_git.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_vagrant.sh"
