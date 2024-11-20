@@ -100,6 +100,15 @@ else
     exit 1
 fi
 
+INSTALL_FONTS_PATH="${PROJECT_TOP_DIR}/src/install_fonts.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_FONTS_PATH}"
+else
+    echo "Error: Could not find install_fonts.sh at ${INSTALL_FONTS_PATH}"
+    exit 1
+fi
+
 function PersonalSettings::install_prerequisites()
 {
     PersonalSettings::Utils::Message::info "Installing prerequisites: coreutils, software-properties-common, apt-transport-https, ca-certificates, grep, sed, gawk, curl, wget, tar, jq, sshpass, rsync, unzip, zip, util-linux, pciutils, dmidecode"
@@ -170,7 +179,7 @@ function PersonalSettings::main()
     PersonalSettings::PackageManager::Apt::autoclean || exit 1
 
     PersonalSettings::Installer::install_cli_utils || exit 1
-
+    PersonalSettings::Installer::install_fonts || exit 1
     PersonalSettings::Installer::install_git || exit 1
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1
     PersonalSettings::Installer::install_latex || exit 1

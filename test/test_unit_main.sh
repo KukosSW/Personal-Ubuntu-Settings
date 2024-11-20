@@ -58,6 +58,16 @@ function Test::TestCase::Unit::install_docker()
     Test::TestCase::install_docker
 }
 
+function Test::TestCase::Unit::install_fonts()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_fonts.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_fonts" "PersonalSettings::Installer::install_fonts"
+
+    # Run tests
+    Test::TestCase::install_fonts
+}
+
 function Test::TestCase::Unit::install_git()
 {
     # Run installation
@@ -107,6 +117,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_c_cpp_devtools
     Test::TestCase::Unit::install_cli_utils
     Test::TestCase::Unit::install_docker
+    Test::TestCase::Unit::install_fonts
     Test::TestCase::Unit::install_git
     Test::TestCase::Unit::install_latex
     Test::TestCase::Unit::install_vagrant
