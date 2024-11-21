@@ -25,6 +25,15 @@ else
     exit 1
 fi
 
+OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${OSINFO_PATH}"
+else
+    echo "Error: Could not find osinfo.sh at ${OSINFO_PATH}"
+    exit 1
+fi
+
 # @brief Function to install C/C++ development tools
 #
 # USAGE:
@@ -105,11 +114,10 @@ PersonalSettings::Installer::install_c_cpp_devtools()
     # KERNEL DEVELOPMENT
     PersonalSettings::Utils::Message::info "Installing kernel development tools"
 
-    #shellcheck disable=SC2312
-    if uname -r | grep -q "azure"; then
-        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping kernel development tools installation"
-    elif [[ -f "/.dockerenv" ]]; then
-        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping kernel development tools installation"
+    if PersonalSettings::OSInfo::is_ci; then
+        PersonalSettings::Utils::Message::warning "CI environment detected. Skipping kernel development tools installation"
+    elif PersonalSettings::OSInfo::is_container; then
+        PersonalSettings::Utils::Message::warning "Container environment detected. Skipping kernel development tools installation"
     else
         #shellcheck disable=SC2312
         PersonalSettings::PackageManager::Apt::install "linux-headers-$(uname -r)" || return 1
