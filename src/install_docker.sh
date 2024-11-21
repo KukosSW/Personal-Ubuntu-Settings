@@ -25,6 +25,15 @@ else
     exit 1
 fi
 
+OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${OSINFO_PATH}"
+else
+    echo "Error: Could not find osinfo.sh at ${OSINFO_PATH}"
+    exit 1
+fi
+
 # @brief Function to install docker
 #
 # USAGE:
@@ -35,12 +44,13 @@ PersonalSettings::Installer::install_docker()
 {
     PersonalSettings::Utils::Message::info "Installing docker"
 
-    #shellcheck disable=SC2312
-    if uname -r | grep -q "azure"; then
-        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping docker installation"
+    if PersonalSettings::OSInfo::is_ci; then
+        PersonalSettings::Utils::Message::warning "CI environment detected. Skipping docker installation"
         return 0
-    elif [[ -f "/.dockerenv" ]]; then
-        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping docker installation"
+    fi
+
+    if PersonalSettings::OSInfo::is_container; then
+        PersonalSettings::Utils::Message::warning "Container environment detected. Skipping docker installation"
         return 0
     fi
 
