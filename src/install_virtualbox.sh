@@ -52,43 +52,45 @@ PersonalSettings::Installer::install_virtualbox()
 
     PersonalSettings::Utils::Message::success "VirtualBox installed successfully"
 
-    #shellcheck disable=SC2312
-    if uname -r | grep -q "azure"; then
-        PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping Linux ISOs download"
-    elif [[ -f "/.dockerenv" ]]; then
-        PersonalSettings::Utils::Message::warning "Docker container detected. Skipping Linux ISOs download"
-    else
-        PersonalSettings::Utils::Message::info "Downloading Linux ISOs to /home/${USER}/virtualbox/images"
-        mkdir -p "/home/${USER}/virtualbox/images"
+    # This is not needed for now
+    # I keep this code here for future reference
+    # #shellcheck disable=SC2312
+    # if uname -r | grep -q "azure"; then
+    #     PersonalSettings::Utils::Message::warning "Azure kernel detected. Skipping Linux ISOs download"
+    # elif [[ -f "/.dockerenv" ]]; then
+    #     PersonalSettings::Utils::Message::warning "Docker container detected. Skipping Linux ISOs download"
+    # else
+    #     PersonalSettings::Utils::Message::info "Downloading Linux ISOs to /home/${USER}/virtualbox/images"
+    #     mkdir -p "/home/${USER}/virtualbox/images"
 
-        # Ubuntu 24.04.1 LTS
-        if [[ ! -f "/home/${USER}/virtualbox/images/ubuntu-24.04.1-desktop-amd64.iso" ]]; then
-            PersonalSettings::Utils::Message::info "Downloading Ubuntu 24.04.1 LTS"
-            wget -O "/home/${USER}/virtualbox/images/ubuntu-24.04.1-desktop-amd64.iso" "https://releases.ubuntu.com/24.04.1/ubuntu-24.04.1-desktop-amd64.iso" >/dev/null 2>&1
-            PersonalSettings::Utils::Message::success "Ubuntu 24.04.1 LTS downloaded successfully"
-        fi
+    #     # Ubuntu 24.04.1 LTS
+    #     if [[ ! -f "/home/${USER}/virtualbox/images/ubuntu-24.04.1-desktop-amd64.iso" ]]; then
+    #         PersonalSettings::Utils::Message::info "Downloading Ubuntu 24.04.1 LTS"
+    #         wget -O "/home/${USER}/virtualbox/images/ubuntu-24.04.1-desktop-amd64.iso" "https://releases.ubuntu.com/24.04.1/ubuntu-24.04.1-desktop-amd64.iso" >/dev/null 2>&1
+    #         PersonalSettings::Utils::Message::success "Ubuntu 24.04.1 LTS downloaded successfully"
+    #     fi
 
-        # Debian 12.7.0
-        if [[ ! -f "/home/${USER}/virtualbox/images/debian-12.7.0-amd64-netinst.iso" ]]; then
-            PersonalSettings::Utils::Message::info "Downloading Debian 12.7.0"
-            wget -O "/home/${USER}/virtualbox/images/debian-12.7.0-amd64-netinst.iso" "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.7.0-amd64-netinst.iso" >/dev/null 2>&1
-            PersonalSettings::Utils::Message::success "Debian 12.7.0 downloaded successfully"
-        fi
+    #     # Debian 12.7.0
+    #     if [[ ! -f "/home/${USER}/virtualbox/images/debian-12.7.0-amd64-netinst.iso" ]]; then
+    #         PersonalSettings::Utils::Message::info "Downloading Debian 12.7.0"
+    #         wget -O "/home/${USER}/virtualbox/images/debian-12.7.0-amd64-netinst.iso" "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.7.0-amd64-netinst.iso" >/dev/null 2>&1
+    #         PersonalSettings::Utils::Message::success "Debian 12.7.0 downloaded successfully"
+    #     fi
 
-        # Fedora 40 Workstation
-        if [[ ! -f "/home/${USER}/virtualbox/images/Fedora-Workstation-Live-x86_64-40-1.14.iso" ]]; then
-            PersonalSettings::Utils::Message::info "Downloading Fedora 40 Workstation"
-            wget -O "/home/${USER}/virtualbox/images/Fedora-Workstation-Live-x86_64-40-1.14.iso" "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.14.iso" >/dev/null 2>&1
-            PersonalSettings::Utils::Message::success "Fedora 40 Workstation downloaded successfully"
-        fi
+    #     # Fedora 40 Workstation
+    #     if [[ ! -f "/home/${USER}/virtualbox/images/Fedora-Workstation-Live-x86_64-40-1.14.iso" ]]; then
+    #         PersonalSettings::Utils::Message::info "Downloading Fedora 40 Workstation"
+    #         wget -O "/home/${USER}/virtualbox/images/Fedora-Workstation-Live-x86_64-40-1.14.iso" "https://download.fedoraproject.org/pub/fedora/linux/releases/40/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-40-1.14.iso" >/dev/null 2>&1
+    #         PersonalSettings::Utils::Message::success "Fedora 40 Workstation downloaded successfully"
+    #     fi
 
-        # Arch 2024.09.01
-        if [[ ! -f "/home/${USER}/virtualbox/images/archlinux-2024.09.01-x86_64.iso" ]]; then
-            PersonalSettings::Utils::Message::info "Downloading Arch 2024.09.01"
-            wget -O "/home/${USER}/virtualbox/images/archlinux-2024.09.01-x86_64.iso" "https://mirror.rackspace.com/archlinux/iso/2024.09.01/archlinux-2024.09.01-x86_64.iso" >/dev/null 2>&1
-            PersonalSettings::Utils::Message::success "Arch 2024.09.01 downloaded successfully"
-        fi
-    fi
+    #     # Arch 2024.09.01
+    #     if [[ ! -f "/home/${USER}/virtualbox/images/archlinux-2024.09.01-x86_64.iso" ]]; then
+    #         PersonalSettings::Utils::Message::info "Downloading Arch 2024.09.01"
+    #         wget -O "/home/${USER}/virtualbox/images/archlinux-2024.09.01-x86_64.iso" "https://mirror.rackspace.com/archlinux/iso/2024.09.01/archlinux-2024.09.01-x86_64.iso" >/dev/null 2>&1
+    #         PersonalSettings::Utils::Message::success "Arch 2024.09.01 downloaded successfully"
+    #     fi
+    # fi
 
     return 0
 }
