@@ -550,6 +550,40 @@ function PersonalSettings::OSInfo::package_manager()
     return 0
 }
 
+# @brief Check if the script is running in GitHub Actions
+#
+# USAGE:
+#   PersonalSettings::OSInfo::is_gthub_actions
+# OUTPUT:
+# none
+#
+# @return 0 if running in GitHub Actions, 1 otherwise
+function PersonalSettings::OSInfo::is_gthub_actions()
+{
+    if [[ -n "${GITHUB_ACTIONS:-}" ]]; then
+        return 0
+    fi
+
+    return 1
+}
+
+# @brief Check if the script is running in a CI environment
+#
+# USAGE:
+#   PersonalSettings::OSInfo::is_ci
+# OUTPUT:
+# none
+#
+# @return 0 if running in a CI environment, 1 otherwise
+function PersonalSettings::OSInfo::is_ci()
+{
+    if PersonalSettings::OSInfo::is_gthub_actions; then
+        return 0
+    fi
+
+    return 1
+}
+
 # @brief Get the full OS information
 #
 # USAGE:
