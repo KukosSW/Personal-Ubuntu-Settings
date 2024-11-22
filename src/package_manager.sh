@@ -60,7 +60,7 @@ function PersonalSettings::PackageManager::Apt::update()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt update >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt update >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Apt package list updated successfully"
 
         rm -f "${temp_log_file}"
@@ -98,7 +98,7 @@ function PersonalSettings::PackageManager::Apt::upgrade()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt upgrade -y >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Apt package list upgraded successfully"
 
         rm -f "${temp_log_file}"
@@ -151,7 +151,7 @@ function PersonalSettings::PackageManager::Apt::install()
         # We can suppress it, because we where created the temp file with user permissions
         # So the user without sudo permissions can write to the file and read it
         # shellcheck disable=SC2024
-        if sudo apt install -y "${package_name}" >"${temp_log_file}" 2>&1; then
+        if sudo DEBIAN_FRONTEND=noninteractive apt install -y "${package_name}" >"${temp_log_file}" 2>&1; then
             PersonalSettings::Utils::Message::success "Package: ${package_name} installed successfully"
 
             rm -f "${temp_log_file}"
@@ -176,7 +176,7 @@ function PersonalSettings::PackageManager::Apt::install()
         # We can suppress it, because we where created the temp file with user permissions
         # So the user without sudo permissions can write to the file and read it
         # shellcheck disable=SC2024
-        if sudo apt install -y "${additional_options[@]}" "${package_name}" >"${temp_log_file}" 2>&1; then
+        if sudo DEBIAN_FRONTEND=noninteractive apt install -y "${additional_options[@]}" "${package_name}" >"${temp_log_file}" 2>&1; then
             PersonalSettings::Utils::Message::success "Package: ${package_name} installed successfully"
 
             rm -f "${temp_log_file}"
@@ -223,7 +223,7 @@ function PersonalSettings::PackageManager::Apt::remove()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt remove -y --purge "${package_name}" >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt remove -y --purge "${package_name}" >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Package: ${package_name} removed successfully"
 
         rm -f "${temp_log_file}"
@@ -261,7 +261,7 @@ function PersonalSettings::PackageManager::Apt::autoremove()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt autoremove -y >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt autoremove -y >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Unused packages removed successfully"
 
         rm -f "${temp_log_file}"
@@ -299,7 +299,7 @@ function PersonalSettings::PackageManager::Apt::clean()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt clean >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt clean >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Apt cache cleaned successfully"
 
         rm -f "${temp_log_file}"
@@ -337,7 +337,7 @@ function PersonalSettings::PackageManager::Apt::autoclean()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt autoclean >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt autoclean >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Apt cache cleaned successfully"
 
         rm -f "${temp_log_file}"
@@ -375,7 +375,7 @@ function PersonalSettings::PackageManager::Apt::full_upgrade()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt full-upgrade -y >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt full-upgrade -y >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Full upgrade completed successfully"
 
         rm -f "${temp_log_file}"
@@ -413,7 +413,7 @@ function PersonalSettings::PackageManager::Apt::fix_broken()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if sudo apt --fix-broken install -y >"${temp_log_file}" 2>&1; then
+    if sudo DEBIAN_FRONTEND=noninteractive apt --fix-broken install -y >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::success "Broken packages fixed successfully"
 
         rm -f "${temp_log_file}"
@@ -455,7 +455,7 @@ function PersonalSettings::PackageManager::Apt::add_repository()
     # We can suppress it, because we where created the temp file with user permissions
     # So the user without sudo permissions can write to the file and read it
     # shellcheck disable=SC2024
-    if ! sudo add-apt-repository -y "${repository_url}" >"${temp_log_file}" 2>&1; then
+    if ! sudo DEBIAN_FRONTEND=noninteractive add-apt-repository -y "${repository_url}" >"${temp_log_file}" 2>&1; then
         PersonalSettings::Utils::Message::error "Failed to add repository: ${repository_url}"
 
         cat "${temp_log_file}" >&2
