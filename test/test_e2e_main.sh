@@ -32,6 +32,7 @@ function Test::TestSuite::E2E::run()
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_cli_utils
     Test::TestCase::install_docker
+    Test::TestCase::install_fonts
     Test::TestCase::install_git
     Test::TestCase::install_latex
     Test::TestCase::install_vagrant
