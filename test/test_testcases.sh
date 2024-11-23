@@ -653,3 +653,153 @@ function Test::TestCase::install_virtualbox()
     Test::Utils::is_installed         "Installer::install_virtualbox::installed::virtualbox" "virtualbox"
     Test::Utils::is_command_available "Installer::install_virtualbox::cmd_available::vboxmanage" "vboxmanage"
 }
+
+function Test::TestCase::install_xfce()
+{
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gdm3" "gdm3"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::gdm3" "gdm3"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4" "xfce4"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-session" "xfce4-session"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-goodies" "xfce4-goodies"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gir1.2-libxfce4panel-2.0" "gir1.2-libxfce4panel-2.0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gir1.2-libxfce4ui-2.0" "gir1.2-libxfce4ui-2.0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gir1.2-libxfce4util-1.0" "gir1.2-libxfce4util-1.0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gir1.2-libxfce4windowing-0.0" "gir1.2-libxfce4windowing-0.0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::gir1.2-libxfce4windowingui-0.0" "gir1.2-libxfce4windowingui-0.0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::jgmenu-xfce4-panel-applet" "jgmenu-xfce4-panel-applet"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4panel-2.0-4" "libxfce4panel-2.0-4"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4panel-2.0-dev" "libxfce4panel-2.0-dev"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4ui-2-0" "libxfce4ui-2-0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4ui-2-dev" "libxfce4ui-2-dev"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4ui-common" "libxfce4ui-common"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4ui-glade" "libxfce4ui-glade"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4ui-utils" "libxfce4ui-utils"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4util-bin" "libxfce4util-bin"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4util-common" "libxfce4util-common"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4util-dev" "libxfce4util-dev"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4util7" "libxfce4util7"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4windowing-0-0" "libxfce4windowing-0-0"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4windowing-0-dev" "libxfce4windowing-0-dev"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfce4windowing-common" "libxfce4windowing-common"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfconf-0-3" "libxfconf-0-3"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::libxfconf-0-dev" "libxfconf-0-dev"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::lxtask" "lxtask"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::lxtask" "lxtask"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::orage" "orage"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::orage" "orage"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::orage-data" "orage-data"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::shiki-colors-xfwm-theme" "shiki-colors-xfwm-theme"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-appfinder" "xfce4-appfinder"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-appfinder" "xfce4-appfinder"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-clipman" "xfce4-clipman"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-clipman" "xfce4-clipman"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-dev-tools" "xfce4-dev-tools"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-helpers" "xfce4-helpers"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-notes" "xfce4-notes"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-notes" "xfce4-notes"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-notifyd" "xfce4-notifyd"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-panel" "xfce4-panel"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-panel" "xfce4-panel"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-panel-profiles" "xfce4-panel-profiles"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-panel-profiles" "xfce4-panel-profiles"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-power-manager" "xfce4-power-manager"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-power-manager" "xfce4-power-manager"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-power-manager-data" "xfce4-power-manager-data"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-screensaver" "xfce4-screensaver"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-screensaver" "xfce4-screensaver"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-screenshooter" "xfce4-screenshooter"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-screenshooter" "xfce4-screenshooter"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-settings" "xfce4-settings"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-taskmanager" "xfce4-taskmanager"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-taskmanager" "xfce4-taskmanager"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-terminal" "xfce4-terminal"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-terminal" "xfce4-terminal"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfwm4" "xfwm4"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfwm4" "xfwm4"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfwm4-theme-breeze" "xfwm4-theme-breeze"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-dict" "xfce4-dict"
+    Test::Utils::is_command_available "Installer::install_xfce::cmd_available::xfce4-dict" "xfce4-dict"
+
+    Test::Utils::is_installed         "Installer::install_xfce::installed::budgie-sntray-plugin" "budgie-sntray-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::mate-sntray-plugin" "mate-sntray-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::vala-sntray-plugin" "vala-sntray-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::workrave-xfce4" "workrave-xfce4"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-appmenu-plugin" "xfce4-appmenu-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-battery-plugin" "xfce4-battery-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-clipman-plugin" "xfce4-clipman-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-cpufreq-plugin" "xfce4-cpufreq-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-cpugraph-plugin" "xfce4-cpugraph-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-datetime-plugin" "xfce4-datetime-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-diskperf-plugin" "xfce4-diskperf-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-eyes-plugin" "xfce4-eyes-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-fsguard-plugin" "xfce4-fsguard-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-genmon-plugin" "xfce4-genmon-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-indicator-plugin" "xfce4-indicator-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-mailwatch-plugin" "xfce4-mailwatch-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-mount-plugin" "xfce4-mount-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-mpc-plugin" "xfce4-mpc-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-netload-plugin" "xfce4-netload-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-notes-plugin" "xfce4-notes-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-places-plugin" "xfce4-places-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-power-manager-plugins" "xfce4-power-manager-plugins"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-pulseaudio-plugin" "xfce4-pulseaudio-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-sensors-plugin" "xfce4-sensors-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-smartbookmark-plugin" "xfce4-smartbookmark-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-sntray-plugin" "xfce4-sntray-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-sntray-plugin-common" "xfce4-sntray-plugin-common"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-systemload-plugin" "xfce4-systemload-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-time-out-plugin" "xfce4-time-out-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-timer-plugin" "xfce4-timer-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-verve-plugin" "xfce4-verve-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-wavelan-plugin" "xfce4-wavelan-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-weather-plugin" "xfce4-weather-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-whiskermenu-plugin" "xfce4-whiskermenu-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-windowck-plugin" "xfce4-windowck-plugin"
+    Test::Utils::is_installed         "Installer::install_xfce::installed::xfce4-xkb-plugin" "xfce4-xkb-plugin"
+}
