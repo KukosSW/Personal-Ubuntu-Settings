@@ -97,4 +97,6 @@ PersonalSettings::Installer::install_fonts()
     PersonalSettings::Utils::Message::info "Font cache updated successfully"
 
     PersonalSettings::Utils::Message::success "Fonts installed successfully"
+
+    return 0
 }

@@ -200,4 +200,4 @@ function PersonalSettings::main()
     return 0
 }
 
-PersonalSettings::main
+PersonalSettings::main || exit 1

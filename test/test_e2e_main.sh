@@ -27,7 +27,7 @@ function Test::TestSuite::E2E::run()
 {
     Test::TestCase::shellcheck
 
-    "${PROJECT_TOP_DIR}/src/main.sh"
+    "${PROJECT_TOP_DIR}/src/main.sh" || exit 1
 
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_cli_utils

@@ -96,8 +96,8 @@ PersonalSettings::Installer::install_git()
         # shellcheck disable=SC2312
         lazygit_version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
         curl -Lqo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${lazygit_version}_Linux_x86_64.tar.gz" 2>/dev/null
-        tar xf lazygit.tar.gz lazygit
-        sudo install lazygit /usr/local/bin
+        tar xf lazygit.tar.gz lazygit || return 1
+        sudo install lazygit /usr/local/bin || return 1
 
         rm -f lazygit.tar.gz lazygit
 
