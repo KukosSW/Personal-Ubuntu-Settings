@@ -108,6 +108,16 @@ function Test::TestCase::Unit::install_virtualbox()
     Test::TestCase::install_virtualbox
 }
 
+function Test::TestCase::Unit::install_xfce()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_xfce.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_xfce" "PersonalSettings::Installer::install_xfce"
+
+    # Run tests
+    Test::TestCase::install_xfce
+}
+
 function Test::TestSuite::Unit::run()
 {
     Test::TestCase::shellcheck
@@ -122,6 +132,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_latex
     Test::TestCase::Unit::install_vagrant
     Test::TestCase::Unit::install_virtualbox
+    Test::TestCase::Unit::install_xfce
 }
 
 Test::TestSuite::Unit::run

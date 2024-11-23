@@ -30,6 +30,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_vagrant.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_xfce.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/message.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/osinfo.sh"

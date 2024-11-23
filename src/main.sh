@@ -91,21 +91,30 @@ else
     exit 1
 fi
 
-OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
-if [[ -f "${OSINFO_PATH}" ]]; then
-    # shellcheck source=/dev/null
-    source "${OSINFO_PATH}"
-else
-    echo "Error: Could not find osinfo.sh at ${OSINFO_PATH}"
-    exit 1
-fi
-
 INSTALL_FONTS_PATH="${PROJECT_TOP_DIR}/src/install_fonts.sh"
 if [[ -f "${OSINFO_PATH}" ]]; then
     # shellcheck source=/dev/null
     source "${INSTALL_FONTS_PATH}"
 else
     echo "Error: Could not find install_fonts.sh at ${INSTALL_FONTS_PATH}"
+    exit 1
+fi
+
+INSTALL_XFCE_PATH="${PROJECT_TOP_DIR}/src/install_xfce.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_XFCE_PATH}"
+else
+    echo "Error: Could not find install_xfce.sh at ${INSTALL_XFCE_PATH}"
+    exit 1
+fi
+
+OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${OSINFO_PATH}"
+else
+    echo "Error: Could not find osinfo.sh at ${OSINFO_PATH}"
     exit 1
 fi
 
@@ -186,6 +195,7 @@ function PersonalSettings::main()
     PersonalSettings::Installer::install_virtualbox || exit 1
     PersonalSettings::Installer::install_docker || exit 1
     PersonalSettings::Installer::install_vagrant || exit 1
+    PersonalSettings::Installer::install_xfce || exit 1
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
