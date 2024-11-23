@@ -324,6 +324,9 @@ function Test::TestCase::install_cli_utils()
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::plocate" "plocate"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::plocate" "plocate"
 
+    Test::Utils::is_installed         "Installer::install_cli_utils::installed::debconf-utils" "debconf-utils"
+    Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::debconf-get-selections" "debconf-get-selections"
+
     Test::Utils::is_installed         "Installer::install_cli_utils::installed::htop" "htop"
     Test::Utils::is_command_available "Installer::install_cli_utils::cmd_available::htop" "htop"
 

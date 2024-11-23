@@ -138,6 +138,8 @@ function PersonalSettings::DevEnv::install()
     sudo apt install -y sshpass || return 1
     sudo apt install -y shellcheck || return 1
     sudo apt install -y jq || return 1
+    sudo apt install -y apt-rdepends || return 1
+    sudo apt install -y debconf-utils || return 1
 
     if uname -r | grep -q "azure"; then
         echo "Azure kernel detected. Skipping kernel development tools installation, most probably VirtualBox and vagrant will not work"
