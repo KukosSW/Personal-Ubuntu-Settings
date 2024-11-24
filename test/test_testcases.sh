@@ -581,6 +581,46 @@ function Test::TestCase::install_git()
     Test::Utils::test "Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
 }
 
+function Test::TestCase::install_java
+{
+    local java_newest_version
+    java_newest_version="$(apt-cache search openjdk 2>/dev/null | grep -Eo 'openjdk-[0-9]+-jdk' | sort -V | tail -n 1 | awk -F '-' '{print $2}')"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::openjdk-${java_newest_version}-jdk" "openjdk-${java_newest_version}-jdk"
+    Test::Utils::is_installed         "Installer::install_java::installed::openjdk-${java_newest_version}-jre" "openjdk-${java_newest_version}-jre"
+    Test::Utils::is_installed         "Installer::install_java::installed::openjdk-${java_newest_version}-dbg" "openjdk-${java_newest_version}-dbg"
+    Test::Utils::is_installed         "Installer::install_java::installed::openjdk-${java_newest_version}-doc" "openjdk-${java_newest_version}-doc"
+    Test::Utils::is_installed         "Installer::install_java::installed::openjdk-${java_newest_version}-source" "openjdk-${java_newest_version}-source"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::java" "java"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::javac" "javac"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::javadoc" "javadoc"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::javap" "javap"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::jshell" "jshell"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::jdb" "jdb"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::libasmtools-java" "libasmtools-java"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::libeclipse-collections-java" "libeclipse-collections-java"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::libhsdis0-fcml" "libhsdis0-fcml"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::libjax-maven-plugin" "libjax-maven-plugin"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::java-package" "java-package"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::maven" "maven"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::mvn" "mvn"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::ant" "ant"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::ant" "ant"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::gradle" "gradle"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::gradle" "gradle"
+
+    Test::Utils::is_installed         "Installer::install_java::installed::visualvm" "visualvm"
+    Test::Utils::is_command_available "Installer::install_java::cmd_available::visualvm" "visualvm"
+}
+
 function Test::TestCase::install_latex()
 {
     Test::Utils::is_installed         "Installer::install_latex::installed::texlive-full" "texlive-full"

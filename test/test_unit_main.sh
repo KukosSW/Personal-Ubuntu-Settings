@@ -78,6 +78,16 @@ function Test::TestCase::Unit::install_git()
     Test::TestCase::install_git
 }
 
+function Test::TestCase::Unit::install_java()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_java.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_java_devtools" "PersonalSettings::Installer::install_java_devtools"
+
+    # Run tests
+    Test::TestCase::install_java
+}
+
 function Test::TestCase::Unit::install_latex()
 {
     # Run installation
@@ -119,6 +129,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_docker
     Test::TestCase::Unit::install_fonts
     Test::TestCase::Unit::install_git
+    Test::TestCase::Unit::install_java
     Test::TestCase::Unit::install_latex
     Test::TestCase::Unit::install_vagrant
     Test::TestCase::Unit::install_virtualbox
