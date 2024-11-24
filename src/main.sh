@@ -109,6 +109,15 @@ else
     exit 1
 fi
 
+INSTALL_JAVA_PATH="${PROJECT_TOP_DIR}/src/install_java.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_JAVA_PATH}"
+else
+    echo "Error: Could not find install_java.sh at ${INSTALL_JAVA_PATH}"
+    exit 1
+fi
+
 OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
 if [[ -f "${OSINFO_PATH}" ]]; then
     # shellcheck source=/dev/null
@@ -196,6 +205,7 @@ function PersonalSettings::main()
     PersonalSettings::Installer::install_docker || exit 1
     PersonalSettings::Installer::install_vagrant || exit 1
     PersonalSettings::Installer::install_xfce || exit 1
+    PersonalSettings::Installer::install_java_devtools || exit 1
 
     PersonalSettings::PackageManager::Apt::update || exit 1
     PersonalSettings::PackageManager::Apt::upgrade || exit 1
