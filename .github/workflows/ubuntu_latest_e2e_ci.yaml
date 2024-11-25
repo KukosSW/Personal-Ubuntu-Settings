@@ -18,21 +18,37 @@ jobs:
     - name: Environment Preparation
       uses: actions/checkout@v2
 
-    - name: Disk Preparation
+    - name: Checking disk usage
+      run: df -h
+
+    - name: Remove unnecessary files
       run : |
-        df -h
         sudo apt-get clean
         sudo rm -rf /usr/share/dotnet
         sudo rm -rf /usr/local/lib/android
         sudo rm -rf /opt/ghc
-        df -h
+
+    - name: Symlink fonts to /mnt/runner/work
+      run : |
         mkdir -p $HOME/.fonts
         sudo mkdir -p /mnt/runner/work/fonts
         sudo chown -R $USER:$USER /mnt/runner/
         ln -s /mnt/runner/work/fonts $HOME/.fonts
+
+    - name: Symlink golang to /mnt/runner/work
+      run : |
+        mkdir -p $HOME/.go
+        sudo mkdir -p /mnt/runner/work/go
+        sudo chown -R $USER:$USER /mnt/runner/
+        ln -s /mnt/runner/work/go $HOME/.go
+
+    - name: Checking disk usage
+      run: df -h
 
     - name: Run E2E tests
       run : |
         DOCKER_BUILDKIT=1 docker build --file test/docker/Dockerfile_e2e_ubuntu_latest --tag docker_e2e_ubuntu_latest .
         docker run --rm docker_e2e_ubuntu_latest
 
+    - name: Checking disk usage
+      run: df -h
