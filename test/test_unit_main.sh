@@ -78,6 +78,16 @@ function Test::TestCase::Unit::install_git()
     Test::TestCase::install_git
 }
 
+function Test::TestCase::Unit::install_golang()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_golang.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_golang" "PersonalSettings::Installer::install_golang_devtools"
+
+    # Run tests
+    Test::TestCase::install_golang
+}
+
 function Test::TestCase::Unit::install_java()
 {
     # Run installation
@@ -129,6 +139,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_docker
     Test::TestCase::Unit::install_fonts
     Test::TestCase::Unit::install_git
+    Test::TestCase::Unit::install_golang
     Test::TestCase::Unit::install_java
     Test::TestCase::Unit::install_latex
     Test::TestCase::Unit::install_vagrant

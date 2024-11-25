@@ -34,6 +34,7 @@ function Test::TestSuite::E2E::run()
     Test::TestCase::install_docker
     Test::TestCase::install_fonts
     Test::TestCase::install_git
+    Test::TestCase::install_golang
     Test::TestCase::install_java
     Test::TestCase::install_latex
     Test::TestCase::install_vagrant

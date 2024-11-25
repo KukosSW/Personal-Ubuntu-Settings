@@ -581,6 +581,33 @@ function Test::TestCase::install_git()
     Test::Utils::test "Installer::install_git::config::alias" "git config --list | grep -q \"alias.ci=commit\""
 }
 
+function Test::TestCase::install_golang()
+{
+    Test::Utils::is_installed         "Installer::install_golang::installed::golang" "golang"
+    Test::Utils::is_command_available "Installer::install_golang::cmd_available::go" "go"
+
+    Test::Utils::test "Installer::install_golang::tools::golangci" "ls ${HOME}/go/bin | grep -q \"golangci-lint\""
+    Test::Utils::test "Installer::install_golang::tools::revive" "ls ${HOME}/go/bin | grep -q \"revive\""
+    Test::Utils::test "Installer::install_golang::tools::gosec" "ls ${HOME}/go/bin | grep -q \"gosec\""
+    Test::Utils::test "Installer::install_golang::tools::errcheck" "ls ${HOME}/go/bin | grep -q \"errcheck\""
+    Test::Utils::test "Installer::install_golang::tools::ginkgo" "ls ${HOME}/go/bin | grep -q \"ginkgo\""
+    Test::Utils::test "Installer::install_golang::tools::mockgen" "ls ${HOME}/go/bin | grep -q \"mockgen\""
+    Test::Utils::test "Installer::install_golang::tools::dlv" "ls ${HOME}/go/bin | grep -q \"dlv\""
+    Test::Utils::test "Installer::install_golang::tools::goimports" "ls ${HOME}/go/bin | grep -q \"goimports\""
+    Test::Utils::test "Installer::install_golang::tools::staticcheck" "ls ${HOME}/go/bin | grep -q \"staticcheck\""
+    Test::Utils::test "Installer::install_golang::tools::stringer" "ls ${HOME}/go/bin | grep -q \"stringer\""
+    Test::Utils::test "Installer::install_golang::tools::protoc-gen-go" "ls ${HOME}/go/bin | grep -q \"protoc-gen-go\""
+    Test::Utils::test "Installer::install_golang::tools::swagger" "ls ${HOME}/go/bin | grep -q \"swagger\""
+    Test::Utils::test "Installer::install_golang::tools::air" "ls ${HOME}/go/bin | grep -q \"air\""
+    Test::Utils::test "Installer::install_golang::tools::swag" "ls ${HOME}/go/bin | grep -q \"swag\""
+    Test::Utils::test "Installer::install_golang::tools::mage" "ls ${HOME}/go/bin | grep -q \"mage\""
+    Test::Utils::test "Installer::install_golang::tools::gomplate" "ls ${HOME}/go/bin | grep -q \"gomplate\""
+    Test::Utils::test "Installer::install_golang::tools::packr2" "ls ${HOME}/go/bin | grep -q \"packr2\""
+    Test::Utils::test "Installer::install_golang::tools::dockerize" "ls ${HOME}/go/bin | grep -q \"dockerize\""
+    Test::Utils::test "Installer::install_golang::tools::gopls" "ls ${HOME}/go/bin | grep -q \"gopls\""
+    Test::Utils::test "Installer::install_golang::tools::sqlc" "ls ${HOME}/go/bin | grep -q \"sqlc\""
+}
+
 function Test::TestCase::install_java
 {
     local java_newest_version
