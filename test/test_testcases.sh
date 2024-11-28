@@ -712,6 +712,102 @@ function Test::TestCase::install_latex()
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdfinfo" "pdfinfo"
 }
 
+function Test::TestCase::install_python()
+{
+    Test::Utils::is_installed         "Installer::install_python::installed::python3" "python3"
+    Test::Utils::is_command_available "Installer::install_python::cmd_available::python3" "python3"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::python3-pip" "python3-pip"
+    Test::Utils::is_command_available "Installer::install_python::cmd_available::pip3" "pip3"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::python3-venv" "python3-venv"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::python3-dev" "python3-dev"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::pipx" "pipx"
+    Test::Utils::is_command_available "Installer::install_python::cmd_available::pipx" "pipx"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::portaudio19-dev" "portaudio19-dev"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::libpython3-dev" "libpython3-dev"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::libgomp1" "libgomp1"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::gfortran" "gfortran"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::libopenblas-dev" "libopenblas-dev"
+
+    Test::Utils::is_installed         "Installer::install_python::installed::liblapack-dev" "liblapack-dev"
+
+    # Now we need to check pip packages installed in the virtual environment
+    source "${HOME}/.python/venv/default/bin/activate"
+
+    Test::Utils::test "Installer::install_python::installed::pip::setuptools" "pip list | grep -q \"setuptools\""
+    Test::Utils::test "Installer::install_python::installed::pip::wheel" "pip list | grep -q \"wheel\""
+    Test::Utils::test "Installer::install_python::installed::pip::python-dotenv" "pip list | grep -q \"python-dotenv\""
+    Test::Utils::test "Installer::install_python::installed::pip::pathlib" "pip list | grep -q \"pathlib\""
+    Test::Utils::test "Installer::install_python::installed::pip::tqdm" "pip list | grep -q \"tqdm\""
+    Test::Utils::test "Installer::install_python::installed::pip::sqlmodel" "pip list | grep -q \"sqlmodel\""
+    Test::Utils::test "Installer::install_python::installed::pip::httpx" "pip list | grep -q \"httpx\""
+    Test::Utils::test "Installer::install_python::installed::pip::requests" "pip list | grep -q \"requests\""
+    Test::Utils::test "Installer::install_python::installed::pip::scrapy" "pip list | grep -q \"Scrapy\""
+    Test::Utils::test "Installer::install_python::installed::pip::selenium" "pip list | grep -q \"selenium\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyppeteer" "pip list | grep -q \"pyppeteer\""
+    Test::Utils::test "Installer::install_python::installed::pip::pytest" "pip list | grep -q \"pytest\""
+    Test::Utils::test "Installer::install_python::installed::pip::coverage" "pip list | grep -q \"coverage\""
+    Test::Utils::test "Installer::install_python::installed::pip::tox" "pip list | grep -q \"tox\""
+    Test::Utils::test "Installer::install_python::installed::pip::hypothesis" "pip list | grep -q \"hypothesis\""
+    Test::Utils::test "Installer::install_python::installed::pip::pdbpp" "pip list | grep -q \"pdbpp\""
+    Test::Utils::test "Installer::install_python::installed::pip::python-dateutil" "pip list | grep -q \"python-dateutil\""
+    Test::Utils::test "Installer::install_python::installed::pip::pytz" "pip list | grep -q \"pytz\""
+    Test::Utils::test "Installer::install_python::installed::pip::arrow" "pip list | grep -q \"arrow\""
+    Test::Utils::test "Installer::install_python::installed::pip::regex" "pip list | grep -q \"regex\""
+    Test::Utils::test "Installer::install_python::installed::pip::rich" "pip list | grep -q \"rich\""
+    Test::Utils::test "Installer::install_python::installed::pip::tabulate" "pip list | grep -q \"tabulate\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyinstaller" "pip list | grep -q \"pyinstaller\""
+    Test::Utils::test "Installer::install_python::installed::pip::boto3" "pip list | grep -q \"boto3\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyngrok" "pip list | grep -q \"pyngrok\""
+    Test::Utils::test "Installer::install_python::installed::pip::protobuf" "pip list | grep -q \"protobuf\""
+    Test::Utils::test "Installer::install_python::installed::pip::Cython" "pip list | grep -q \"Cython\""
+    Test::Utils::test "Installer::install_python::installed::pip::psutil" "pip list | grep -q \"psutil\""
+    Test::Utils::test "Installer::install_python::installed::pip::numpy" "pip list | grep -q \"numpy\""
+    Test::Utils::test "Installer::install_python::installed::pip::pandas" "pip list | grep -q \"pandas\""
+    Test::Utils::test "Installer::install_python::installed::pip::matplotlib" "pip list | grep -q \"matplotlib\""
+    Test::Utils::test "Installer::install_python::installed::pip::tensorflow" "pip list | grep -q \"tensorflow\""
+    Test::Utils::test "Installer::install_python::installed::pip::keras" "pip list | grep -q \"keras\""
+    Test::Utils::test "Installer::install_python::installed::pip::flask" "pip list | grep -q \"Flask\""
+    Test::Utils::test "Installer::install_python::installed::pip::django" "pip list | grep -q \"Django\""
+    Test::Utils::test "Installer::install_python::installed::pip::fastapi" "pip list | grep -q \"fastapi\""
+    Test::Utils::test "Installer::install_python::installed::pip::bottle" "pip list | grep -q \"bottle\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyramid" "pip list | grep -q \"pyramid\""
+    Test::Utils::test "Installer::install_python::installed::pip::sqlalchemy" "pip list | grep -q \"SQLAlchemy\""
+    Test::Utils::test "Installer::install_python::installed::pip::beautifulsoup4" "pip list | grep -q \"beautifulsoup4\""
+    Test::Utils::test "Installer::install_python::installed::pip::lxml" "pip list | grep -q \"lxml\""
+    Test::Utils::test "Installer::install_python::installed::pip::watchdog" "pip list | grep -q \"watchdog\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyyaml" "pip list | grep -q \"PyYAML\""
+    Test::Utils::test "Installer::install_python::installed::pip::json5" "pip list | grep -q \"json5\""
+    Test::Utils::test "Installer::install_python::installed::pip::csvkit" "pip list | grep -q \"csvkit\""
+    Test::Utils::test "Installer::install_python::installed::pip::pillow" "pip list | grep -q \"pillow\""
+    Test::Utils::test "Installer::install_python::installed::pip::imageio" "pip list | grep -q \"imageio\""
+    Test::Utils::test "Installer::install_python::installed::pip::pytesseract" "pip list | grep -q \"pytesseract\""
+    Test::Utils::test "Installer::install_python::installed::pip::pydub" "pip list | grep -q \"pydub\""
+    Test::Utils::test "Installer::install_python::installed::pip::soundfile" "pip list | grep -q \"soundfile\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyaudio" "pip list | grep -q \"PyAudio\""
+    Test::Utils::test "Installer::install_python::installed::pip::speechrecognition" "pip list | grep -q \"SpeechRecognition\""
+    Test::Utils::test "Installer::install_python::installed::pip::cryptography" "pip list | grep -q \"cryptography\""
+    Test::Utils::test "Installer::install_python::installed::pip::pyjwt" "pip list | grep -q \"PyJWT\""
+    Test::Utils::test "Installer::install_python::installed::pip::passlib" "pip list | grep -q \"passlib\""
+    Test::Utils::test "Installer::install_python::installed::pip::bcrypt" "pip list | grep -q \"bcrypt\""
+    Test::Utils::test "Installer::install_python::installed::pip::paramiko" "pip list | grep -q \"paramiko\""
+    Test::Utils::test "Installer::install_python::installed::pip::fabric" "pip list | grep -q \"fabric\""
+    Test::Utils::test "Installer::install_python::installed::pip::asyncio" "pip list | grep -q \"asyncio\""
+    Test::Utils::test "Installer::install_python::installed::pip::aiohttp" "pip list | grep -q \"aiohttp\""
+    Test::Utils::test "Installer::install_python::installed::pip::colorama" "pip list | grep -q \"colorama\""
+    Test::Utils::test "Installer::install_python::installed::pip::faker" "pip list | grep -q \"Faker\""
+
+    deactivate
+}
+
 function Test::TestCase::install_vagrant()
 {
     Test::Utils::is_installed         "Installer::install_vagrant::installed::vagrant" "vagrant"

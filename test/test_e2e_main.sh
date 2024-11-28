@@ -37,6 +37,7 @@ function Test::TestSuite::E2E::run()
     Test::TestCase::install_golang
     Test::TestCase::install_java
     Test::TestCase::install_latex
+    Test::TestCase::install_python
     Test::TestCase::install_vagrant
     Test::TestCase::install_virtualbox
 }

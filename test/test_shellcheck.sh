@@ -30,6 +30,7 @@ function Test::TestCase::shellcheck()
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_golang.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_java.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_latex.sh"
+    Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_python.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_vagrant.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/install_virtualbox.sh"
     Test::Utils::shellcheck_check "${PROJECT_TOP_DIR}/src/main.sh"

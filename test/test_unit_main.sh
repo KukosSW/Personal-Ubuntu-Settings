@@ -108,6 +108,16 @@ function Test::TestCase::Unit::install_latex()
     Test::TestCase::install_latex
 }
 
+function Test::TestCase::Unit::install_python()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_python.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_python" "PersonalSettings::Installer::install_python_devtools"
+
+    # Run tests
+    Test::TestCase::install_python
+}
+
 function Test::TestCase::Unit::install_vagrant()
 {
     # Run installation
@@ -142,6 +152,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_golang
     Test::TestCase::Unit::install_java
     Test::TestCase::Unit::install_latex
+    Test::TestCase::Unit::install_python
     Test::TestCase::Unit::install_vagrant
     Test::TestCase::Unit::install_virtualbox
 }

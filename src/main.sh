@@ -118,6 +118,15 @@ else
     exit 1
 fi
 
+INSTALL_PYTHON_PATH="${PROJECT_TOP_DIR}/src/install_python.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_PYTHON_PATH}"
+else
+    echo "Error: Could not find install_python.sh at ${INSTALL_PYTHON_PATH}"
+    exit 1
+fi
+
 OSINFO_PATH="${PROJECT_TOP_DIR}/src/osinfo.sh"
 if [[ -f "${OSINFO_PATH}" ]]; then
     # shellcheck source=/dev/null
@@ -129,7 +138,7 @@ fi
 
 function PersonalSettings::install_prerequisites()
 {
-    PersonalSettings::Utils::Message::info "Installing prerequisites: coreutils, software-properties-common, apt-transport-https, ca-certificates, grep, sed, gawk, curl, wget, tar, jq, sshpass, rsync, unzip, zip, util-linux, pciutils, dmidecode"
+    PersonalSettings::Utils::Message::info "Installing prerequisites: coreutils, software-properties-common, apt-transport-https, ca-certificates, grep, sed, gawk, curl, wget, tar, jq, sshpass, rsync, unzip, zip, util-linux, pciutils, dmidecode gfortran"
 
     sudo apt install -y coreutils >/dev/null 2>&1 || return 1
     sudo apt install -y software-properties-common >/dev/null 2>&1 || return 1
@@ -149,6 +158,7 @@ function PersonalSettings::install_prerequisites()
     sudo apt install -y util-linux >/dev/null 2>&1 || return 1
     sudo apt install -y pciutils >/dev/null 2>&1 || return 1
     sudo apt install -y dmidecode >/dev/null 2>&1 || return 1
+    sudo apt install -y gfortran >/dev/null 2>&1 || return 1
 
     PersonalSettings::Utils::Message::success "Prerequisites installed successfully"
 
@@ -197,6 +207,7 @@ function PersonalSettings::main()
     PersonalSettings::PackageManager::Apt::autoclean || exit 1
 
     PersonalSettings::Installer::install_cli_utils || exit 1
+    PersonalSettings::Installer::install_python_devtools || exit 1
     PersonalSettings::Installer::install_fonts || exit 1
     PersonalSettings::Installer::install_git || exit 1
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1
