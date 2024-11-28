@@ -42,6 +42,13 @@ jobs:
         sudo chown -R $USER:$USER /mnt/runner/
         ln -s /mnt/runner/work/go $HOME/.go
 
+    - name: Symlink python to /mnt/runner/work
+      run : |
+        mkdir -p $HOME/.python
+        sudo mkdir -p /mnt/runner/work/python
+        sudo chown -R $USER:$USER /mnt/runner/
+        ln -s /mnt/runner/work/python $HOME/.python
+
     - name: Checking disk usage
       run: df -h
 
