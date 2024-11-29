@@ -712,6 +712,80 @@ function Test::TestCase::install_latex()
     Test::Utils::is_command_available "Installer::install_latex::cmd_available::pdfinfo" "pdfinfo"
 }
 
+function Test::TestCase::install_pipx_apps()
+{
+    Test::Utils::is_installed         "Installer::install_pipx_apps::installed::python3" "python3"
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::python3" "python3"
+
+    Test::Utils::is_installed         "Installer::install_pipx_apps::installed::python3-pip" "python3-pip"
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pip3" "pip3"
+
+    Test::Utils::is_installed         "Installer::install_pipx_apps::installed::python3-venv" "python3-venv"
+
+    Test::Utils::is_installed         "Installer::install_pipx_apps::installed::python3-dev" "python3-dev"
+
+    Test::Utils::is_installed         "Installer::install_pipx_apps::installed::pipx" "pipx"
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx" "pipx"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::httpie" "pipx list | grep -q \"httpie\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::httpie" "httpie"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::yt-dlp" "pipx list | grep -q \"yt-dlp\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::yt-dlp" "yt-dlp"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::black" "pipx list | grep -q \"black\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::black" "black"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::mypy" "pipx list | grep -q \"mypy\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::mypy" "mypy"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::pylint" "pipx list | grep -q \"pylint\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::pylint" "pylint"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::flake8" "pipx list | grep -q \"flake8\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::flake8" "flake8"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::tox" "pipx list | grep -q \"tox\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::tox" "tox"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::safety" "pipx list | grep -q \"safety\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::safety" "safety"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::invoke" "pipx list | grep -q \"invoke\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::invoke" "invoke"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::cookiecutter" "pipx list | grep -q \"cookiecutter\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::cookiecutter" "cookiecutter"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::pre-commit" "pipx list | grep -q \"pre-commit\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::pre-commit" "pre-commit"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::bandit" "pipx list | grep -q \"bandit\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::bandit" "bandit"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::bpython" "pipx list | grep -q \"bpython\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::bpython" "bpython"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::mkdocs" "pipx list | grep -q \"mkdocs\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::mkdocs" "mkdocs"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::glances" "pipx list | grep -q \"glances\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::glances" "glances"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::termgraph" "pipx list | grep -q \"termgraph\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::termgraph" "termgraph"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::howdoi" "pipx list | grep -q \"howdoi\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::howdoi" "howdoi"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::py-spy" "pipx list | grep -q \"py-spy\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::py-spy" "py-spy"
+
+    Test::Utils::test                 "Installer::install_pipx_apps::installed::pipx::pgcli" "pipx list | grep -q \"pgcli\""
+    Test::Utils::is_command_available "Installer::install_pipx_apps::cmd_available::pipx::pgcli" "pgcli"
+
+}
+
 function Test::TestCase::install_python()
 {
     Test::Utils::is_installed         "Installer::install_python::installed::python3" "python3"

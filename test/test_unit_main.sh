@@ -108,6 +108,16 @@ function Test::TestCase::Unit::install_latex()
     Test::TestCase::install_latex
 }
 
+function Test::TestCase::Unit::install_pipx_apps()
+{
+    # Run installation
+    source "${PROJECT_TOP_DIR}/src/install_pipx_apps.sh"
+    Test::Utils::test "PersonalSettings::Installer::install_pipx_apps" "PersonalSettings::Installer::install_pipx_apps"
+
+    # Run tests
+    Test::TestCase::install_pipx_apps
+}
+
 function Test::TestCase::Unit::install_python()
 {
     # Run installation
@@ -152,6 +162,7 @@ function Test::TestSuite::Unit::run()
     Test::TestCase::Unit::install_golang
     Test::TestCase::Unit::install_java
     Test::TestCase::Unit::install_latex
+    Test::TestCase::Unit::install_pipx_apps
     Test::TestCase::Unit::install_python
     Test::TestCase::Unit::install_vagrant
     Test::TestCase::Unit::install_virtualbox

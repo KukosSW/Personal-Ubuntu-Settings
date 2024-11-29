@@ -118,6 +118,15 @@ else
     exit 1
 fi
 
+INSTALL_PIPX_PATH="${PROJECT_TOP_DIR}/src/install_pipx_apps.sh"
+if [[ -f "${OSINFO_PATH}" ]]; then
+    # shellcheck source=/dev/null
+    source "${INSTALL_PIPX_PATH}"
+else
+    echo "Error: Could not find install_pipx_apps.sh at ${INSTALL_PIPX_PATH}"
+    exit 1
+fi
+
 INSTALL_PYTHON_PATH="${PROJECT_TOP_DIR}/src/install_python.sh"
 if [[ -f "${OSINFO_PATH}" ]]; then
     # shellcheck source=/dev/null
@@ -208,6 +217,7 @@ function PersonalSettings::main()
 
     PersonalSettings::Installer::install_cli_utils || exit 1
     PersonalSettings::Installer::install_python_devtools || exit 1
+    PersonalSettings::Installer::install_pipx_apps || exit 1
     PersonalSettings::Installer::install_fonts || exit 1
     PersonalSettings::Installer::install_git || exit 1
     PersonalSettings::Installer::install_c_cpp_devtools || exit 1

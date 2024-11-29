@@ -28,6 +28,9 @@ function Test::TestSuite::E2E::run()
     Test::TestCase::shellcheck
 
     "${PROJECT_TOP_DIR}/src/main.sh" || exit 1
+    # Python pipx exported a PATH variable that is not available in the current shell
+    # We need to export it again here to make the tests work
+    export PATH="${HOME}/.local/bin:${PATH}"
 
     Test::TestCase::install_c_cpp_devtools
     Test::TestCase::install_cli_utils
@@ -38,6 +41,7 @@ function Test::TestSuite::E2E::run()
     Test::TestCase::install_java
     Test::TestCase::install_latex
     Test::TestCase::install_python
+    Test::TestCase::install_pipx_apps
     Test::TestCase::install_vagrant
     Test::TestCase::install_virtualbox
 }
